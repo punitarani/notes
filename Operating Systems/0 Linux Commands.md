@@ -153,3 +153,24 @@ Here are some common usage examples:
 - `-i`or `--interactive` - prompt before every removal
 - `-r` or `-R` or `--recursive` - remove directories and their contents recursively
 - `-v` or `--verbose` - explain what is being done
+
+## `rmdir`
+
+`rmdir` stands for "remove directory" and is used to remove empty directories in the file system.
+
+Here are some common usage examples:
+
+- `rmdir dirname` - removes the empty directory "dirname"
+- `rmdir dir1/dir2/dir3` - removes the empty directory "dir3" and its parent directories "dir2" and "dir1" if they are also empty.
+
+`rmdir` command only accepts one option:
+
+`-p` or `--parents` - remove DIRECTORY and its ancestors; e.g., `rmdir -p a/b/c` is similar to rmdir a/b/c a/b a
+
+It is important to note that the rmdir command will only work on empty directories, it will not delete directories with files or other directories in them.
+If the directory specified is not empty, the command will return an error message.
+To remove a directory and its contents recursively, you should use rm `-r` command instead.
+
+Also, if you don't have write permissions on the specified directory, the command will fail with a "permission denied" error.
+
+Also, for safety reasons, some shells like bash provide the command `rm` with an option `-i` or `--interactive`, this way the command will prompt you to confirm before deleting a file, using this option can be helpful to prevent accidentally delete important files or directories.
