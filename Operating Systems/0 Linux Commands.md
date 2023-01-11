@@ -53,3 +53,26 @@ This command doesn't accept any options or arguments, it just prints the current
 
 The `pwd` command is also a shell built-in command, meaning it is executed directly by the shell rather than by spawning an external process.
 It works by reading the value of the `PWD` (present working directory) environment variable, which is automatically set and updated by the shell as you navigate the file system.
+
+## `mkdir`
+
+`mkdir` is a command in Linux and other Unix-like operating systems that stands for "make directory".
+It is used to create new directories (also known as "folders") in the file system.
+
+Here are some common usage examples:
+
+`mkdir dirname` - creates a new directory with the name "dirname" in the current working directory
+`mkdir -p dir1/dir2/dir3` - creates a nested directory structure, creating "dir1", "dir2", and "dir3" if they do not already exist.
+mkdir command accepts some options:
+
+`-p` or `--parents` - no error if existing, make parent directories as needed
+`-v` or `--verbose` - print a message for each created directory
+`-m` or `--mode` - set file mode (as in chmod), not rwxrwxrwx - umask
+`-Z` or `--context` - set the SELinux security context of each created directory to the default type
+
+By default, `mkdir` will only create a new directory if the specified name does not already exist.
+If the directory already exists, `mkdir` will return an error message.
+
+Also, if the user doesn't have write permissions on the parent directory where the new folder will be created, the command will fail with a "permission denied" error.
+
+It is important to notice that when you specify a nested directory structure with mkdir, only the last directory will have the mode you specified, the parent directories will be created with the default permissions of the filesystem.
