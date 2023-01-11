@@ -196,3 +196,40 @@ This can be useful when you want to "touch" a file to indicate that it has been 
 It can be also used to change the timestamps of multiple files at once by specifying the files you want to update as arguments,
 
 Also, if the specified file doesn't exist, `touch` command will create the file but if you don't have write permissions on the current working directory the command will fail with a "permission denied" error.
+
+## `chmod`
+
+`chmod` stands for "change mode" and is used to change the permissions of files and directories in the file system.
+
+File permissions in linux are controlled by three sets of access rights, each one associated with a specific category of users:
+
+- User (or owner): the owner of the file
+- Group: the group that owns the file
+- Others: all other users
+
+Each set of permissions is represented by a three-digit octal number, where each digit represents the permissions for one category of users. Each digit is the sum of the values of the permissions it represents. The possible values for each digit are:
+
+- 0 (no permissions)
+- 1 (execute)
+- 2 (write)
+- 4 (read)
+
+Here are some common usage examples:
+
+- `chmod 755 file1` - gives read, write, and execute permissions to the owner, and read and execute permissions to others, for the file "file1"
+- `chmod 644 file1` - gives read and write permissions to the owner, and read permissions to others, for the file "file1"
+- `chmod +x file1` - adds execute permissions to the owner of the file "file1"
+- `chmod -w file1` - removes write permissions from the owner of the file "file1"
+
+`chmod` command accepts some options:
+
+- `-c` or `--changes` - like verbose but report only when a change is made
+- `-f` or -`-silent` - do not report when permissions on a file cannot be changed
+- `-R` or `--recursive` - change files and directories recursively
+- `-v` or `--verbose` - verbosely describe the action
+
+It is important to note that the chmod command can only be executed by the owner of the file or by a superuser.
+Also, that the permissions can be represented either in octal notation or symbolic notation, where `+` adds, `-` removes and `=` sets permissions to the users.
+Also, you can use the `u` `g` `o` `a` letters to specify the category of users, for example: `chmod u+x file1` will give execute permissions to the owner of the file file1.
+
+Also, it's worth to notice that with `chmod`, as well as other commands that modify files, it's recommended to make a backup copy of the files before making changes, in case any unintended consequences happen.
