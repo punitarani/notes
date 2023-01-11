@@ -76,3 +76,34 @@ If the directory already exists, `mkdir` will return an error message.
 Also, if the user doesn't have write permissions on the parent directory where the new folder will be created, the command will fail with a "permission denied" error.
 
 It is important to notice that when you specify a nested directory structure with mkdir, only the last directory will have the mode you specified, the parent directories will be created with the default permissions of the filesystem.
+
+## `cp`
+
+`cp` stands for "copy" and is used to copy files and directories in the file system.
+
+Here are some common usage examples:
+
+- `cp file1 file2` - copies the file "file1" to a new file "file2"
+- `cp file1 dir1` - copies the file "file1" to the directory "dir1"
+- `cp dir1 dir2` - copies the directory "dir1" to a new directory "dir2"
+- `cp -r dir1 dir2` - copies the directory "dir1" and its contents to a new directory "dir2"
+- `cp file1 file2 file3 dir1` - copies multiple files to a directory
+
+`cp` command accepts some options:
+
+- `-a` or `--archive` - same as -dpR --preserve=all
+- `-d` or `--no-dereference` - same as --preserve=links
+- `-f` or `--force` - if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)
+- `-i` or `--interactive` - prompt before overwrite (overrides a previous -n option)
+- `-l` or `--link` - hard link files instead of copying
+- `L` or `--dereference` - always follow symbolic links in SOURCE
+- `-n` or `--no-clobber` - do not overwrite an existing file (overrides a previous -i option)
+- `-p` or `--preserve` - preserve attributes if possible (default: mode,ownership,timestamps), if an attribute cannot be preserved, give a diagnostic message and try to copy as much as possible
+- `-r` or `--recursive` - copy directories recursively
+- `-s` or `--symbolic-link` - make symbolic links instead of copying
+- `-u` or `--update` - copy only when the SOURCE file is newer than the destination file or when the destination file is missing
+
+Please note that the `cp` command will overwrite the destination file or directory if it already exists and have the write permissions, otherwise the command will fail with a "permission denied" error.
+Also, when you copy recursively, it will preserve the permissions, timestamps and attributes of the original files and directories, unless specified with options.
+
+Also, if you want to rename a file or a folder you can use cp command with the same name for the source and destination file/folder.
