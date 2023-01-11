@@ -107,3 +107,30 @@ Please note that the `cp` command will overwrite the destination file or directo
 Also, when you copy recursively, it will preserve the permissions, timestamps and attributes of the original files and directories, unless specified with options.
 
 Also, if you want to rename a file or a folder you can use cp command with the same name for the source and destination file/folder.
+
+## `mv`
+
+`mv` stands for "move" and is used to move or rename files and directories in the file system.
+
+Here are some common usage examples:
+
+- `mv file1 file2` - renames the file "file1" to "file2"
+- `mv file1 dir1` - moves the file "file1" to the directory "dir1"
+- `mv dir1 dir2` - renames the directory "dir1" to "dir2" (if "dir2" doesn't exist)
+- `mv dir1 dir2` - moves the directory "dir1" to the directory "dir2" (if "dir2" already exists)
+- `mv file1 file2 file3 dir1` - moves multiple files to a directory
+
+`mv` command also accepts some options:
+
+- `-f` or `--force` - if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)
+- `-n` or ``--no-clobber` - do not overwrite an existing file (overrides a previous -i option)
+- `-i` or `--interactive` - prompt before overwrite (overrides a previous -n option)
+- `T` or `--no-target-directory` - treat DEST as a normal file
+- `-u` or `--update` - move only when the SOURCE file is newer than the destination file or when the destination file is missing
+- `v` or `--verbose` - explain what is being done
+
+Please note that the `mv` command will overwrite the destination file or directory if it already exists and have the write permissions, otherwise the command will fail with a "permission denied" error.
+When you move a directory, it changes the parent of the directory, so it will change the inode number of the file(s) inside the directory.
+Also, it preserves the timestamps and attributes of the original files and directories, unless specified with options.
+
+Also, as mentioned, `mv` command can be used to rename files and directories, it is useful when you want to change the name of a file/folder and you are already in the location where the file/folder is located.
