@@ -134,3 +134,22 @@ When you move a directory, it changes the parent of the directory, so it will ch
 Also, it preserves the timestamps and attributes of the original files and directories, unless specified with options.
 
 Also, as mentioned, `mv` command can be used to rename files and directories, it is useful when you want to change the name of a file/folder and you are already in the location where the file/folder is located.
+
+## `rm`
+
+`rm` stands for "remove" and is used to remove files and directories in the file system.
+
+Here are some common usage examples:
+
+- `rm file1` - removes the file "file1"
+- `rm -r dir1` - removes the directory "dir1" and its contents
+- `rm file1 file2 file3` - removes multiple files
+- `rm -f file1` - removes the file "file1" without prompting for confirmation
+
+`rm` also accepts some options:
+
+- `-d`or `--dir` - remove empty directories
+- `-f` or `--force` - ignore nonexistent files and never prompt
+- `-i`or `--interactive` - prompt before every removal
+- `-r` or `-R` or `--recursive` - remove directories and their contents recursively
+- `-v` or `--verbose` - explain what is being done
