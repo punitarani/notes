@@ -37,10 +37,19 @@ Here are some common usage examples:
 - `cd -` - changes the current working directory to the previous directory
 
 The `cd` command is a shell built-in command, meaning it is executed directly by the shell rather than by spawning an external process.
-It works by modifying the value of the `pwd` (present working directory) environment variable.
+It works by modifying the value of the `PWD` (present working directory) environment variable.
 It doesn't generate any output on the terminal when executed.
 
 For some shells like `bash` also support `~` symbol as shortcut for the home directory, for example `cd ~` is the same as `cd`.
 
 Please note that the directories must exist and you have the permissions to access it, otherwise it will give an error message.
 Also the command will only change the current working directory for the shell session or terminal you are using, it won't affect other open terminals or sessions.
+
+## `pwd`
+
+`pwd` stands for "print working directory" and displays the full path of the current working directory.
+
+This command doesn't accept any options or arguments, it just prints the current working directory to the terminal.
+
+The `pwd` command is also a shell built-in command, meaning it is executed directly by the shell rather than by spawning an external process.
+It works by reading the value of the `PWD` (present working directory) environment variable, which is automatically set and updated by the shell as you navigate the file system.
