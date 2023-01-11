@@ -56,6 +56,7 @@ The memory manager is responsible for managing the memory (RAM) allocation and d
 - Heap Memory: Dynamic allocation. Allocated at run time.
 
 $\text{(slowest) Disk} \rightarrow \text{RAM} \rightarrow \text{Cache} \rightarrow \text{Register (fastest)}$
+
 The memory manager shuffles data between the RAM and Register most of the time and to Disk for permanent storage.
 
 ##### Virtual Memory

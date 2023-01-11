@@ -9,9 +9,9 @@ Here are some common usage examples:
 
 - `ls` - lists the files and directories in the current directory
 - `ls -l` - lists the files and directories in a "long" format, including details such as file permissions, ownership, and timestamps
-- l`s -a` - lists all files and directories, including hidden files and directories (those that begin with a dot ".")
+- `ls -a` - lists all files and directories, including hidden files and directories (those that begin with a dot ".")
 - `ls -la` - combines the -l and -a options, showing a long listing of all files and directories
-- l`s dirname` - lists the contents of the specified directory "dirname"
+- `ls dirname` - lists the contents of the specified directory "dirname"
 - `ls file1 file2` - lists information about the specified files "file1" and "file2"
 
 The ls command has many options, some of them are:
@@ -96,7 +96,7 @@ Here are some common usage examples:
 - `-f` or `--force` - if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)
 - `-i` or `--interactive` - prompt before overwrite (overrides a previous -n option)
 - `-l` or `--link` - hard link files instead of copying
-- `L` or `--dereference` - always follow symbolic links in SOURCE
+- `-L` or `--dereference` - always follow symbolic links in SOURCE
 - `-n` or `--no-clobber` - do not overwrite an existing file (overrides a previous -i option)
 - `-p` or `--preserve` - preserve attributes if possible (default: mode,ownership,timestamps), if an attribute cannot be preserved, give a diagnostic message and try to copy as much as possible
 - `-r` or `--recursive` - copy directories recursively
@@ -125,9 +125,9 @@ Here are some common usage examples:
 - `-f` or `--force` - if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used)
 - `-n` or ``--no-clobber` - do not overwrite an existing file (overrides a previous -i option)
 - `-i` or `--interactive` - prompt before overwrite (overrides a previous -n option)
-- `T` or `--no-target-directory` - treat DEST as a normal file
+- `-T` or `--no-target-directory` - treat DEST as a normal file
 - `-u` or `--update` - move only when the SOURCE file is newer than the destination file or when the destination file is missing
-- `v` or `--verbose` - explain what is being done
+- `-v` or `--verbose` - explain what is being done
 
 Please note that the `mv` command will overwrite the destination file or directory if it already exists and have the write permissions, otherwise the command will fail with a "permission denied" error.
 When you move a directory, it changes the parent of the directory, so it will change the inode number of the file(s) inside the directory.
@@ -230,6 +230,6 @@ Here are some common usage examples:
 
 It is important to note that the chmod command can only be executed by the owner of the file or by a superuser.
 Also, that the permissions can be represented either in octal notation or symbolic notation, where `+` adds, `-` removes and `=` sets permissions to the users.
-Also, you can use the `u` `g` `o` `a` letters to specify the category of users, for example: `chmod u+x file1` will give execute permissions to the owner of the file file1.
+Also, you can use the `u`,  `g`,  `o` , and `a` letters to specify the category of users, for example: `chmod u+x file1` will give execute permissions to the owner of the file file1.
 
 Also, it's worth to notice that with `chmod`, as well as other commands that modify files, it's recommended to make a backup copy of the files before making changes, in case any unintended consequences happen.
