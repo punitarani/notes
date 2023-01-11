@@ -136,3 +136,8 @@ It is responsible for managing the connected devices and their drivers.
 
 The process manager is responsible for scheduling programs for execution and coordinating their execution.
 It handles the creation, termination, and synchronization of multiple and concurrent processes.
+
+## Booting Up
+
+The Bootstrap is a program in ROM that is transferred to RAM and executed by the CPU.
+It is responsible for loading the OS into memory and starting the OS.
