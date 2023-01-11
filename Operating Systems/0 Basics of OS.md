@@ -162,3 +162,24 @@ It has a process state including:
 
 A virtual machine is a software that emulates a computer system and allows multiple operating systems to run on the same hardware.
 It allows for an executable to be run on a controlled OS environment within the host OS increasing the portability of the executable.
+
+## Multitasking
+
+The OS has a scheduler that is responsible for allocating CPU time for processes to run next.
+The dispatcher is responsible for switching between states and controlling the time slices for each process.
+
+### Multitasking Issues
+
+- Concurrency problems
+  - Two processes/threads accessing the same resource at the same time introduce inconsistences in data and error.
+- Race Conditions
+  - Two or more processes/threads compete for the same data or resources.
+  - Faster processes/threads can finish before slower processes/threads.
+  - Slow processes/threads can create bottlenecks.
+- Deadlock
+  - Multiple processes have competing actions that prevent each other from completing.
+
+#### Solutions to Multitasking Issues
+
+- Spin Locks allows the shared resource is locked until a process/thread is done with their task.
+- Code better algorithms to anticipate deadlock and recover from it.
