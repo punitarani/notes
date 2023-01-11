@@ -174,3 +174,25 @@ To remove a directory and its contents recursively, you should use rm `-r` comma
 Also, if you don't have write permissions on the specified directory, the command will fail with a "permission denied" error.
 
 Also, for safety reasons, some shells like bash provide the command `rm` with an option `-i` or `--interactive`, this way the command will prompt you to confirm before deleting a file, using this option can be helpful to prevent accidentally delete important files or directories.
+
+## `touch`
+
+`touch` is used to create new files or update the timestamps of existing files.
+
+`touch file1` - creates an empty file with the name "file1" in the current working directory if the file doesn't exist, or update the timestamp of the file to the current time if it does exist.
+`touch -a file1` - update the access time of the file "file1" to the current time
+`touch -m file1` - update the modification time of the file "file1" to the current time
+
+`touch` command accepts some options:
+
+`-a` or `--time=atime` - change only the access time
+`-c` or `--no-create` - do not create any files
+`-m` or `--time=mtime` - change only the modification time
+`-r` or `--reference=FILE` - use this file's times instead of current time
+`-t` or `--time=TIME` - use [[CC]YY]MMDDhhmm[.ss] instead of current time
+
+The `touch` command is often used as a simple way to create new, empty files, but it can also be used to update the timestamps of existing files.
+This can be useful when you want to "touch" a file to indicate that it has been updated, even if the file's contents haven't actually changed.
+It can be also used to change the timestamps of multiple files at once by specifying the files you want to update as arguments,
+
+Also, if the specified file doesn't exist, `touch` command will create the file but if you don't have write permissions on the current working directory the command will fail with a "permission denied" error.
