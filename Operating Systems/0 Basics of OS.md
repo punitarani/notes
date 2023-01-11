@@ -157,3 +157,8 @@ It has a process state including:
 - Program Counter: what instruction to execute next.
 - Register Values: The values of the registers.
 - Memory contents: the data from memory required to run the program.
+
+## Virtual Machine
+
+A virtual machine is a software that emulates a computer system and allows multiple operating systems to run on the same hardware.
+It allows for an executable to be run on a controlled OS environment within the host OS increasing the portability of the executable.
