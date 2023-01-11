@@ -141,3 +141,19 @@ It handles the creation, termination, and synchronization of multiple and concur
 
 The Bootstrap is a program in ROM that is transferred to RAM and executed by the CPU.
 It is responsible for loading the OS into memory and starting the OS.
+
+## Program vs Process
+
+### Program
+
+A Program is a set of instructions that is stored on the disk.
+It is meant to be executed at a later time.
+
+### Process
+
+A Process is an instance of a program that is loaded into the RAM and being executed.
+It has a process state including:
+
+- Program Counter: what instruction to execute next.
+- Register Values: The values of the registers.
+- Memory contents: the data from memory required to run the program.
