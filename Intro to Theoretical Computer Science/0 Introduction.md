@@ -30,10 +30,10 @@ An abstract machine is essentially a mathematical model of computation.
 
 An abstract machine that can capture systems with a finite number of states.
 
-- Models simple tasks that need to be repeated
-- Easy to implement with limiter hardware and software
-- Easy to design and visualize
-- Easy to verify correctness
+- Models simple tasks that need to be repeated.
+- Easy to implement with limiter hardware and software.
+- Easy to design and visualize.
+- Easy to verify correctness.
 
 Examples: Push Button and Elevator
 
@@ -41,9 +41,20 @@ Examples: Push Button and Elevator
 
 An abstract machine that can capture systems with a finite  number of states and a stack (memory).
 
-- Writes to stack
+- Writes to stack.
 - At each step, only the top symbol of stack can be accessed to perform read/write.
   - It can either be kept or removed.
   - or new symbol can be pushed.
 
 Examples: Compiler and Calculator.
+
+### Turing Machines
+
+An abstract machine that can capture systems that can manipulate symbols on a strip of tape.
+
+- The tape is infinite.
+- Can both read and write to tape.
+- The tape can move bidirectionally.
+- Special states for rejecting and accepting take effect immediately.
+
+While simple, Turing machines can model any given computer algorithm and its logic.
