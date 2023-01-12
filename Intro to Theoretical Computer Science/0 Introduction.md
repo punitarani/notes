@@ -63,3 +63,9 @@ While simple, Turing machines can model any given computer algorithm and its log
 
 Complexity theory is the study of the efficiency of algorithms and the limits of their power.
 It is concerned with the question of how efficiently problems can be solved.
+
+## Computability Theory
+
+Computability theory is the study of the fundamental capabilities and limitations of abstract machines.
+It is concerned with the question of what problems can be solved by algorithms.
+Identify problems that can and can't be solved via reducibility.
