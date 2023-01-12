@@ -30,3 +30,17 @@
 - Implemented using web services such as SOAP, REST, and WSDL.
 - Allows for the creation of modular, reusable and flexible systems that can be easily integrated with other systems without affecting the entire system.
 - Enables the development of distributed systems that can take advantage of the scalability and fault tolerance provided by a network of interconnected systems.
+
+## Computer Architecture
+
+Flynn's Classification:
+
+- **SISD**: Single Instruction (stream), Single Data (stream).
+  - Simple computers
+- **SIMD**: Single Instruction (stream), Multiple Data (streams)
+  - Vector or array computers
+- **MISD**: Multiple Instruction (streams), Single Data (stream)
+  - Fault-tolerant computers
+  - Redundant computing on same data and voting on results
+- **MIMD**: Multiple Instruction (streams), Multiple Data (streams)
+  - Multi-Core computer systems in distributed systems network
