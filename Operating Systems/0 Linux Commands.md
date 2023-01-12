@@ -263,3 +263,29 @@ grep command accepts many options, some of the most common are:
 
 By default `grep` will search for the specified pattern or regular expression in a case-sensitive way and print the lines that contain the match.
 Using these options, you can customize the behavior of the grep command to suit your specific needs.
+
+## `cat`
+
+`cat` stands for "concatenate".
+It is used to display the contents of text files, or to concatenate several text files and display their combined contents.
+
+Here are some common usage examples:
+
+- `cat file1` - displays the contents of the file "file1" in the terminal
+- `cat file1 file2` - concatenates the contents of "file1" and "file2" and displays the combined contents in the terminal
+- `cat > file1` - creates a new file "file1" and allows you to enter text into the file, press Ctrl+D to save the file and exit
+- `cat >> file1` - adds text to the end of the file "file1"
+
+`cat` command accepts some options but they are less common:
+
+- `-n` or `--number` - number all output lines
+- `-b` or `--number-nonblank` - number nonempty output lines
+- `-s` or `--squeeze-blank` - suppress repeated empty output lines
+- `-T` or `--show-tabs` - display TAB characters as ^I
+- `-v` or `--show-nonprinting` - use ^ and M- notation, except for LFD and TAB
+
+The `cat` command is often used to quickly view the contents of a text file, but it can also be used to concatenate multiple files and redirect their combined output to a new file or a command.
+It's also useful when you want to create a new file and add some text to it.
+
+Also, it's worth to notice that, in some cases, `cat` command can be used as a way to concatenate binary files, but this can lead to unexpected results if the files have different encoding or format.
+It's recommended to use specific tools to concatenate binary files.
