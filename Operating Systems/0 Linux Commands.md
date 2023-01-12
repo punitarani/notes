@@ -242,24 +242,24 @@ It's a powerful command that allows you to search for specific words, phrases, o
 
 Here are some common usage examples:
 
-`grep "word" file1` - searches for the string "word" in the file "file1"
-`grep -r "word" dir1` - searches for the string "word" in all files under the directory "dir1" recursively
-`grep -n "word" file1` - searches for the string "word" in the file "file1" and also display the line numbers where the match was found
-`cat file1 | grep "word"` - searches for the string "word" in the standard input, in this case the output of the cat command applied to "file1"
-`grep -v "word" file1` - searches for all lines that do not contain the string "word" in the file "file1"
+- `grep "word" file1` - searches for the string "word" in the file "file1"
+- `grep -r "word" dir1` - searches for the string "word" in all files under the directory "dir1" recursively
+- `grep -n "word" file1` - searches for the string "word" in the file "file1" and also display the line numbers where the match was found
+- `cat file1 | grep "word"` - searches for the string "word" in the standard input, in this case the output of the cat command applied to "file1"
+- `grep -v "word" file1` - searches for all lines that do not contain the string "word" in the file "file1"
 
 grep command accepts many options, some of the most common are:
 
-`-r` or `-R` or `--recursive` - search recursively through the directory
-`-n` or `--line-number` - prefix each line of output with the line number within its input file
-`-c` or `--count` - only display a count of matching lines instead of the matching lines themselves
-`-i`  or `--ignore-case` - perform the search ignoring case distinctions
-`-v` or `--invert-match` - invert the sense of matching, to select non-matching lines
-`-w` or `--word-regexp` - only match whole words
-`-e` or `--regexp` - specify a pattern to search for, this option can be used multiple times to search for multiple patterns
-`-f` or `--file` - obtain patterns from a file
-`-E` or `-G` or `-P` - specifies the type of regular expression used, `-E` for extended, `-G` for basic, `-P` for Perl-compatible
-`-o` or `--only-matching` - show only the part of a line matching the pattern
+- `-r` or `-R` or `--recursive` - search recursively through the directory
+- `-n` or `--line-number` - prefix each line of output with the line number within its input file
+- `-c` or `--count` - only display a count of matching lines instead of the matching lines themselves
+- `-i`  or `--ignore-case` - perform the search ignoring case distinctions
+- `-v` or `--invert-match` - invert the sense of matching, to select non-matching lines
+- `-w` or `--word-regexp` - only match whole words
+- `-e` or `--regexp` - specify a pattern to search for, this option can be used multiple times to search for multiple patterns
+- `-f` or `--file` - obtain patterns from a file
+- `-E` or `-G` or `-P` - specifies the type of regular expression used, `-E` for extended, `-G` for basic, `-P` for Perl-compatible
+- `-o` or `--only-matching` - show only the part of a line matching the pattern
 
 By default `grep` will search for the specified pattern or regular expression in a case-sensitive way and print the lines that contain the match.
 Using these options, you can customize the behavior of the grep command to suit your specific needs.
