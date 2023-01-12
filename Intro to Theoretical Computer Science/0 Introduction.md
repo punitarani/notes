@@ -19,3 +19,9 @@ The three main areas of theory of computation are:
 - **Automata Theory**: building abstract machines.
 - **Computability Theory**: Fundamental capabilities and limitations of abstract machines.
 - **Complexity Theory**: Why certain problems are harder than others.
+
+## Automata Theory
+
+Automata theory is the study of abstract machines that can be used to model computation.
+
+An abstract machine is essentially a mathematical model of computation.
