@@ -28,7 +28,7 @@ An abstract machine is essentially a mathematical model of computation.
 
 ### Finite Automata
 
-An abstract machine (or mathematical model of computation) that can capture systems with a finite number of states
+An abstract machine that can capture systems with a finite number of states.
 
 - Models simple tasks that need to be repeated
 - Easy to implement with limiter hardware and software
@@ -36,3 +36,14 @@ An abstract machine (or mathematical model of computation) that can capture syst
 - Easy to verify correctness
 
 Examples: Push Button and Elevator
+
+### Pushdown Automata
+
+An abstract machine that can capture systems with a finite  number of states and a stack (memory).
+
+- Writes to stack
+- At each step, only the top symbol of stack can be accessed to perform read/write.
+  - It can either be kept or removed.
+  - or new symbol can be pushed.
+
+Examples: Compiler and Calculator.
