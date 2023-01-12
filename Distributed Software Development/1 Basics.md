@@ -18,3 +18,8 @@
 
 - This is a more balanced approach allowing for better performance.
 - It is also simpler to maintain and scale.
+
+## Four-Tiered Architecture
+
+4. Service Repository Layer
+    - Handles the communication between the Application Processing Layer and the Data Management Layer.
