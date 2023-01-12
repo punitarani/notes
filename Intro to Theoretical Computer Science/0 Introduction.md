@@ -25,3 +25,14 @@ The three main areas of theory of computation are:
 Automata theory is the study of abstract machines that can be used to model computation.
 
 An abstract machine is essentially a mathematical model of computation.
+
+### Finite Automata
+
+An abstract machine (or mathematical model of computation) that can capture systems with a finite number of states
+
+- Models simple tasks that need to be repeated
+- Easy to implement with limiter hardware and software
+- Easy to design and visualize
+- Easy to verify correctness
+
+Examples: Push Button and Elevator
