@@ -23,3 +23,10 @@
 
 4. Service Repository Layer
     - Handles the communication between the Application Processing Layer and the Data Management Layer.
+
+## Service Oriented Computing
+
+- It is a paradigm for organizing and utilizing distributed capabilities across different ownership domains.
+- Implemented using web services such as SOAP, REST, and WSDL.
+- Allows for the creation of modular, reusable and flexible systems that can be easily integrated with other systems without affecting the entire system.
+- Enables the development of distributed systems that can take advantage of the scalability and fault tolerance provided by a network of interconnected systems.
