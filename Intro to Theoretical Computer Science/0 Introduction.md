@@ -58,3 +58,8 @@ An abstract machine that can capture systems that can manipulate symbols on a st
 - Special states for rejecting and accepting take effect immediately.
 
 While simple, Turing machines can model any given computer algorithm and its logic.
+
+## Complexity Theory
+
+Complexity theory is the study of the efficiency of algorithms and the limits of their power.
+It is concerned with the question of how efficiently problems can be solved.
