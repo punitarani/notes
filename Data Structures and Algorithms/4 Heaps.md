@@ -47,7 +47,7 @@ Build-Max-Heap(A)
         Max-Heapify(A, i)
 ```
 
-### Heap Sort
+### Sort
 
 `Max-Heapify` is used to **build** a **max-heap** from an **unsorted** array.
 This could but likely won't be sorted in descending order.
@@ -60,6 +60,24 @@ HeapSort(A)
         swap A[1] with A[i]
         heap-size[A] = heap-size[A] - 1
         Max-Heapify(A, 1)
+```
+
+### Extract
+
+`Extract-Max` is used to **remove** the **largest** element from the **max-heap**.
+It **returns** the **largest** element and **reduces** the **heap-size** by **one**.
+It **assumes** that the **max-heap** property holds **before** the call.
+It **maintains** the **max-heap** property **after** the call.
+
+```text
+Extract-Max(A)
+    if heap-size[A] < 1
+        error "heap underflow"
+    max = A[1]
+    A[1] = A[heap-size[A]]
+    heap-size[A] = heap-size[A] - 1
+    Max-Heapify(A, 1)
+    return max
 ```
 
 ## Time Complexities
