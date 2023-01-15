@@ -37,3 +37,15 @@ Link(A, x, y)
             A[y] --
         A[x] = y
 ```
+
+## Union
+
+- Worst case total running time of `Union()` is $\Theta(m\log n)$ and total running time is $O(m\log n)$.
+- For $m$ disjoint set operations including $n$ `Make-Set()` operations, the complexity is $O(m \log n)$.
+- The amortized time complexity of each disjoint set operation is $O (\log n)$.
+- Use **Union by Rank** and **Path Compression** gives a worst-case running time of $O (m \alpha (n))$.
+
+```text
+Union(A, x, y)
+    Link(A, Find-Set(A, x), Find-Set(A, y))
+```
