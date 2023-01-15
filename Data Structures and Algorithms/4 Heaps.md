@@ -15,3 +15,16 @@ An **array object** with a **tree view**, and **heap property**
 - General notes
   - Array must be continuous with no space in between
   - Array doest not have to be sorted in descending order
+
+## Time Complexities
+
+|          | Best    | Average | Worst   |
+| -------- | ------- | ------- | ------- |
+| Heapify  | log(n)  | log(n)  | log(n)  |
+| Build    | n       | nlog(n) | nlog(n) |
+| Sort     | nlog(n) | nlog(n) | nlog(n) |
+| Extract  | log(n)  | log(n)  | log(n)  |
+| Increase | log(n)  | log(n)  | log(n)  |
+| Insert   | log(n)  | log(n)  | log(n)  |
+| Delete   | log(n)  | log(n)  | log(n)  |
+| Search   | 1       | n       | n       |
