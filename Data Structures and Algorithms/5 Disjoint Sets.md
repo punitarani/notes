@@ -49,3 +49,16 @@ Link(A, x, y)
 Union(A, x, y)
     Link(A, Find-Set(A, x), Find-Set(A, y))
 ```
+
+## Time Complexity
+
+- Worst case total running time of `union()` is $\Theta(m\log n)$ and total running time is $O(m\log n)$.
+
+  - $m$ is the number of operations and $n$ is the number of elements.
+  - Need to show that the height of the tree is at most $\Theta (\log n)$.
+  - The height of the tree is the upper bound on the number of recursive calls in `find_set(x)`.
+
+- For $m$ disjoint set operations including $n$ `make_set()` operations, the time complexity is $O(m \log n)$.
+- The amortized time complexity of each disjoint set operation is $O (\log n)$.
+
+_Union by rank is used whenever applicable_.
