@@ -47,6 +47,21 @@ Build-Max-Heap(A)
         Max-Heapify(A, i)
 ```
 
+### Heap Sort
+
+`Max-Heapify` is used to **build** a **max-heap** from an **unsorted** array.
+This could but likely won't be sorted in descending order.
+`HeapSort` is used to **sort** the **max-heap** in **descending** order.
+
+```text
+HeapSort(A)
+    Build-Max-Heap(A)
+    for i = length[A] downto 2
+        swap A[1] with A[i]
+        heap-size[A] = heap-size[A] - 1
+        Max-Heapify(A, 1)
+```
+
 ## Time Complexities
 
 |          | Best    | Average | Worst   |
