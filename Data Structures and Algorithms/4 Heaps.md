@@ -98,6 +98,20 @@ Heap-Increase-Key(A, i, key)
 
 Similarly, `Decrease-Key` is used to **decrease** the **value** of an **element** in the **min-heap**.
 
+### Insert
+
+`Max-Heap-Insert` is used to **insert** a **new** element into the **max-heap**.
+It **assumes** that the **max-heap** property holds **before** the call.
+It **maintains** the **max-heap** property **after** the call.
+
+```text
+Max-Heap-Insert(A, key)
+    heap-size[A] ++
+    i = heap-size[A]
+    A[i] = -∞
+    Heap-Increase-Key(A, i, key)
+```
+
 ## Time Complexities
 
 |          | Best    | Average | Worst   |
