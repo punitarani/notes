@@ -80,6 +80,24 @@ Extract-Max(A)
     return max
 ```
 
+### Increase Key
+
+`Increase-Key` is used to **increase** the **value** of an **element** in the **max-heap**.
+It **assumes** that the **max-heap** property holds **before** the call.
+It **maintains** the **max-heap** property **after** the call.
+
+```text
+Heap-Increase-Key(A, i, key)
+    if key < A[i]
+        error "new key is smaller than current key"
+    A[i] = key
+    while i > 1 and A[Parent(i)] < A[i]
+        swap A[i] with A[Parent(i)]
+        i = Parent(i)
+```
+
+Similarly, `Decrease-Key` is used to **decrease** the **value** of an **element** in the **min-heap**.
+
 ## Time Complexities
 
 |          | Best    | Average | Worst   |
