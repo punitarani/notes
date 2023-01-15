@@ -20,3 +20,20 @@ Find-Set(A, x)
       A[x] = find_set(A[x])     # Path compression
       return A[x]               # Recursively find the root
 ```
+
+## Link
+
+`Link` is used to **merge** two **sets** into a new set.
+
+- Favor the **root** with the **larger rank**.
+- Favor $y$ over $x$ if they have the same rank.
+
+```text
+Link(A, x, y)
+    if (-A[x]) > (-A[y])        // * A[x] is larger
+        A[y] = x
+    elements                    // * A[y] is larger
+        if (-A[x]) = (-A[y])    // * A[x] and A[y] are the same size
+            A[y] --
+        A[x] = y
+```
