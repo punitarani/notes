@@ -2,7 +2,7 @@
 
 Binary tree representing comparisons between elements of an algorithm.
 We annotate each node by the comparison made at the corresponding step of the algorithm.
-We annotate each leaf node by a permutation: $ < \pi(1), \pi(2), \dots, \pi(n) >$.
+We annotate each leaf node by a permutation: $< \pi(1), \pi(2), \dots, \pi(n) >$.
 
 - Insertion Sort: $A[j] > A[i]$. The key and the elements to the left are compared.
 - Merge Sort: $A[i] \leq A[j]$. The elements of the two halves are compared.
