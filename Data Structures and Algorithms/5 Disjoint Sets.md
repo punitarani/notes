@@ -62,3 +62,15 @@ Union(A, x, y)
 - The amortized time complexity of each disjoint set operation is $O (\log n)$.
 
 _Union by rank is used whenever applicable_.
+
+### Amortized Analysis
+
+It is a technique for analyzing the time complexity of a sequence of operations.
+
+Similar to union by rank, **Path Compression** alone gives a worst-case running time of $O (m \log n)$.
+
+However, the combining of **Union by Rank** and **Path Compression** gives a worst-case running time of $O (m \alpha (n))$.
+
+- $\alpha (m, n)$ is the inverse Ackermann function, which is a very slowly growing function.
+- $\alpha(m, n) \le 4$ for any practical purpose.
+- Amortized time complexity of each operation is $O (1)$ (constant time) in practice.
