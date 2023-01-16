@@ -1,4 +1,6 @@
-# Shortest Path
+# Minimum Spanning Trees
+
+## Shortest Paths
 
 - The weight of a path is: $w(p) = \sum_{i=1}^{k} w(v_{i-1, i})$
 - The shorted-path weight from vertex $u$ to vertex $v$ is
@@ -55,7 +57,7 @@ Dijkstra(G, w, s)
 The running time with binary heap for Q is $O((V + E) \log V)$.
 The running time with Fibonacci heap for Q is $O(V \log V + E)$.
 
-## Minimum Spanning Trees
+## Kruskal's Algorithm
 
 Subset of G that includes all the vertices and has the minimum possible total weight.
 
@@ -70,6 +72,8 @@ MST-Kruskal(G, w)
             A = A ∪ {(u, v)}            // add (u, v) to A
             Union(u, v)                 // merge u and v into one tree
 ```
+
+## Prim's Algorithm
 
 ```text
 MST-Prim(G, w, r)
