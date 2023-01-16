@@ -20,6 +20,41 @@ Relax(u, v, w)
     v.p = u
 ```
 
+```text
+Initialize-Single-Source(G, s)
+    for each vertex v ∈ V[G]
+        v.d = ∞
+        v.π = NIL
+    s.d = 0
+```
+
+```text
+Relax(u, v, w)
+    if v.d > u.d + w(u, v)
+        v.d = u.d + w(u, v)
+        v.π = u
+        return true
+    return false
+```
+
+```text
+Dijkstra(G, w, s)
+    Initialize-Single-Source(G, s)
+    S = ∅
+    Q = ∅
+    for each vertex v ∈ V[G]
+        Insert(Q, v)
+    while Q ≠ ∅
+        u = Extract-Min(Q)
+        S = S ∪ {u}
+        for each vertex v ∈ Adj[u]
+            If Relax(u, v, w)
+                Decrease-Key(Q, v, v.d)
+```
+
+The running time with binary heap for Q is $O((V + E) \log V)$.
+The running time with Fibonacci heap for Q is $O(V \log V + E)$.
+
 ## Dijkstra's Algorithm
 
 The algorithm is a greedy algorithm that finds the shortest path from a source vertex to all other vertices in a weighted graph.
@@ -46,7 +81,7 @@ Dijkstra(G, s)
     for each vertex v in G.Adj[u]
       Relax(u, v, w)
       if v in Q
-        Q.decrease_key(v) 
+        Q.decrease_key(v)
 ```
 
 ### Complexity
