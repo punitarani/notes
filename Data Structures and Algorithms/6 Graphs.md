@@ -85,3 +85,78 @@ BFS(G, s)
   - $v_r \le v_{1}.d + 1$
   - $v_1.d \le v_2.d \le ... \le v_n.d$.
 - Lemma 5: After BFS is complete, we have $\delta (s, v) = v.d$ for all v in V.
+
+## Depth First Search
+
+**Applications**: Topological sort, strongly connected components, and finding bridges and articulation points.
+
+- **Depth First Search** is a **pre-order traversal** of a graph.
+  - Pre-order traversal: Visit the root node, then recursively traverse the left subtree, then recursively traverse the right subtree.
+- Vertex consists of:
+  1. u.d: Discovery time
+  2. u.f: Finish time
+  3. u.color: {WHITE, GRAY, BLACK}
+  4. u.pi: Parent of the vertex
+- The algorithm is implemented using a **stack** with LIFO property.
+- The predecessor sub-graph of G as $G_{\pi} = (V_{\pi}, E_{\pi})$, where:
+  - $V_{\pi} = \{v \in V | v.pi \ne nil\}$. This is the set of vertices with a parent.
+  - $E_{\pi} = \{<v.\pi, v>: v \in V|{\pi} - \{s\}\}$. This is the set of edges from the parent to the child.
+
+### DFS Pseudocode
+
+```c
+DFS(G)
+  for each vertex u in G.V
+      u.color = WHITE
+      u.pi = NIL
+
+  time = 0
+
+  for each vertex u in G.V
+      if u.color == WHITE
+          DFS_VISIT(G, u)
+```
+
+```c
+DFS_VISIT(G, u)
+  time = time + 1
+  u.d = time
+  u.color = GRAY
+
+  for each vertex v in G.Adj[u]
+      if v.color == WHITE
+          v.pi = u
+          DFS_VISIT(G, v)
+
+  u.color = BLACK
+  time = time + 1
+  u.f = time
+```
+
+### DFS Time Complexity
+
+- The time complexity of DFS is $\Theta(n + m)$.
+  - n is the number of vertices
+  - m is the number of edges
+- Each vertex is pushed and popped at most once.
+- Each vertex is traversed at most once.
+
+### DFS Theorems
+
+#### Nesting of Descendant's Intervals
+
+Vertex $v$ is a descendant of vertex $u$ in the DFS forest iff $u.d \le v.d \le v.f \le u.f$.
+
+#### White-path Theorem
+
+In a DFS forest fo a graph $G=(V, E)$, vertex $v$ is a descendant of vertex $u$ iff there is a white path from $u$ to $v$.
+
+#### Parenthesis Theorem
+
+In a DFS forest of a graph $G=(V, E)$, for any two vertices $u$ and $v$, the following conditions hold:
+
+- Intervals ([u.d, u.f], [v.d, v.f]) are disjoint: neither $u$ nor $v$ is a descendant of the other.
+
+- Interval [u.d, u.f] is contained entirely within the interval [v.d, v.f], and u is a descendant of v
+  OR
+- Interval [v.d, v.f] is contained entirely within the interval [u.d, u.f], and v is a descendant of u.
