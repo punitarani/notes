@@ -55,6 +55,39 @@ Dijkstra(G, w, s)
 The running time with binary heap for Q is $O((V + E) \log V)$.
 The running time with Fibonacci heap for Q is $O(V \log V + E)$.
 
+## Minimum Spanning Trees
+
+Subset of G that includes all the vertices and has the minimum possible total weight.
+
+```text
+MST-Kruskal(G, w)
+    A = ∅                               // A is the set of edges in the MST
+    for each vertex v ∈ V[G]
+        Make-Set(v)
+    E = Sort(G.E) by increasing w
+    for each edge (u, v) ∈ E
+        if Find-Set(u) ≠ Find-Set(v)    // * u and v are in different trees
+            A = A ∪ {(u, v)}            // add (u, v) to A
+            Union(u, v)                 // merge u and v into one tree
+```
+
+```text
+MST-Prim(G, w, r)
+    for each u ∈ V[G]
+        u.key = ∞
+        u.π = NIL
+    r.key = 0
+    Q = V[G]
+    while Q ≠ ∅
+        u = Extract-Min(Q)
+        for each v ∈ Adj[u]
+            if v ∈ Q and w(u, v) < v.key
+                v.π = u
+                v.key = w(u, v)
+```
+
+Time complexity of both are $O(E \log V)$.
+
 ## Dijkstra's Algorithm
 
 The algorithm is a greedy algorithm that finds the shortest path from a source vertex to all other vertices in a weighted graph.
