@@ -9,6 +9,8 @@ $O(n)$ insertion and searching in worst case.
 - Load Factor: $\alpha = \frac{n}{m} = \frac{elements}{slots}$
 - $\Theta(1 + \alpha)$ average search and delete time.
 
+## Functions
+
 ```text
 Hash-Insert(T, k)
     i = 0
@@ -31,3 +33,9 @@ Hash-Search
             return NIL
         i = i + 1
 ```
+
+## Time Complexity
+
+- $O(m)$ worst case time to insert, delete, and search.
+- Load factor $\alpha = \frac{n}{m} < 1$
+- Unsuccessful search probability: $\frac{1}{1 - \alpha}$. Successful: $\frac{1}{\alpha} \ln (\frac{1}{1 - \alpha})$
