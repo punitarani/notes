@@ -160,3 +160,37 @@ In a DFS forest of a graph $G=(V, E)$, for any two vertices $u$ and $v$, the fol
 - Interval [u.d, u.f] is contained entirely within the interval [v.d, v.f], and u is a descendant of v
   OR
 - Interval [v.d, v.f] is contained entirely within the interval [u.d, u.f], and v is a descendant of u.
+
+## Classification of Edges
+
+In the case of an undirected DFS forest, every edge is either a tree edge or a back edge.
+
+- **Tree Edge**: An edge $(u, v)$ is in a tree edge if v is first discovered by exploring edge $(u, v)$.
+- **Back Edge**: An edge $(u, v)$ connecting a vertex $u$ to an ancestor $v$ in the DFS tree. This is a cycle or self-loop edge.
+- **Forward Edge**: An edge $(u, v)$ connecting a vertex $u$ to a descendant $v$ in the DFS tree.
+- **Cross Edge**: All other edges.
+
+### Cycle
+
+- A **cycle** is a path of length at least 2 that starts and ends at the same vertex.
+  - A **self-loop** is considered a cycle.
+  - Can be detected in $\Theta (n + m)$ time using DFS.
+
+### Directed Acyclic Graph (DAG)
+
+- A **directed acyclic graph** (DAG) is a directed graph with no cycles.
+  - Can be detected in $\Theta (n + m)$ time using DFS.
+
+### Topological Sort
+
+- A **topological sort** of a DAG is a linear ordering of its vertices such that if G contains an edge $(u, v)$, then $u$ appears before $v$ in the ordering.
+  - A topological sort is not unique.
+  - Time complexity: $\Theta(n + m)$
+
+#### Topological Sort Pseudocode
+
+```c
+TOPOLOGICAL_SORT(G)
+  DFS(G)
+  return vertices of G in order of decreasing u.f
+```
