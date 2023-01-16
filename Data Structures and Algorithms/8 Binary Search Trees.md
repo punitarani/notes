@@ -104,3 +104,73 @@ Tree-Delete(T, z)
 ```
 
 Time complexity is $O(h)$, where $h$ is the height of the tree.
+
+## Red-Black Trees
+
+1. Each node is either red or black.
+2. [*] The root is black.
+3. Every leaf (NIL) is black.
+4. [*] Red nodes have black children.
+5. [*] Every path from a node to a descendant leaf contains the same number of black nodes.
+
+```text
+Left-Rotate(T, x)
+    y = x.right
+    x.right = y.left
+    if y.left ≠ NIL
+        y.left.π = x
+    y.π = x.π
+    if x.π = NIL
+        T.root = y
+    else if x = x.π.left
+        x.π.left = y
+    else
+        x.π.right = y
+    y.left = x
+    x.π = y
+```
+
+### Insertion
+
+1. X, Parent and Uncle are all RED.
+   - Grandparent becomes reREDd, parent and uncle become BLACK (resolved or propagated)
+2. X and Parent are RED, Uncle is BLACK, and X is near Uncle.
+   - Rotate with X and Parent as backbones (propagated to case 3).
+3. X and Parent are RED, Uncle is BLACK, and X is far from Uncle.
+   - Rotate with Parent and Grandparent as backbones (resolved).
+
+```text
+RB-Insert(T, x)
+    Tree-Insert(T, x)
+    x.color = RED
+    while x.parent and x.parent.color  == RED
+        if x.parent == x.parent.parent.left
+            y = x.parent.parent.right
+            if y.color == RED                   // case 1
+                x.parent.color = BLACK
+                y.color = BLACK
+                x.parent.parent.color = RED
+                x = x.parent.parent
+            else if x == x.parent.right         // case 2
+                x = x.parent
+                Left-Rotate(T, x)
+            x.parent.color = BLACK              // case 3
+            x.parent.parent.color = RED
+            Right-Rotate(T, x.parent.parent)
+        else
+            Reverse the above with left and right swapped
+    T.root.color = BLACK
+```
+
+### Deletion
+
+1. W is RED.
+    - Rotate(W, Parent) (propagated to case 2, 3, 4)
+2. W is BLACK and has 2 BLACK children.
+    - W becomes RED (resolved or propagated)
+3. W is BLACK and has 1 RED near child and 1 BLACK far child.
+    - Rotate(W, near child) (propagated to case 4)
+4. W is BLACK and has RED far child.
+    - Rotate(W, Parent) and transfer extra BLACK  of X to far child of W (resolved)
+
+Individual time complexity $O(1)$ and combined worst case $O(\log n)$.
