@@ -39,3 +39,8 @@ Hash-Search
 - $O(m)$ worst case time to insert, delete, and search.
 - Load factor $\alpha = \frac{n}{m} < 1$
 - Unsuccessful search probability: $\frac{1}{1 - \alpha}$. Successful: $\frac{1}{\alpha} \ln (\frac{1}{1 - \alpha})$
+
+## Hashing Functions
+
+- Division Method: $h(k) = k \mod m$
+- Multiplication Method: $h(k) = \lfloor m(kA \mod 1) \rfloor$ where $A \in (0, 1)$. Ex: $A = \frac{\sqrt{5} - 1}{2}$
