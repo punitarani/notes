@@ -194,3 +194,12 @@ TOPOLOGICAL_SORT(G)
   DFS(G)
   return vertices of G in order of decreasing u.f
 ```
+
+### Strongly Connected Components
+
+1. DFS to compute $u.f$ for each vertex $u$.
+2. Construct $G^t$ by reversing all the edges of $G$ in opposite direction.
+3. Run DFS on $G^t$ but in the main loop of DFS, consider the vertices in order of decreasing $u.f$.
+
+The order of $DFS(G^t)$ is important. but the order of $DFS(G)$ is not important.
+The running time is $O(V + E)$.
