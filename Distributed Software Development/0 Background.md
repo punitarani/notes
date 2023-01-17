@@ -1,4 +1,4 @@
-# Distributed Software Development
+# Background on Distributed Computing
 
 **Distributed computing** is “any form of computing that involves multiple computers/systems in a computing problem”
 
