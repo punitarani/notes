@@ -81,7 +81,7 @@ BFS(G, s)
 
 - Lemma 1: For any edge $(u, v)$, $\delta (s, v) \le \delta (s, u) + 1$.
 - Lemma 2: For G=(V, E) and s in V, $v.d \ge \delta (s, v)$ for all v in V.
-- Lemma 3: For vertices $<v_1, v_2, \dots, v_n>$ in Queue and $i = 1, 2, \dots, r-1$:
+- Lemma 3: For vertices $\{v_1, v_2, \dots, v_n\}$ in Queue and $i = 1, 2, \dots, r-1$:
   - $v_r \le v_{1}.d + 1$
   - $v_1.d \le v_2.d \le ... \le v_n.d$.
 - Lemma 5: After BFS is complete, we have $\delta (s, v) = v.d$ for all v in V.
