@@ -23,3 +23,26 @@
   - Contains all strings that can be constructed from $\Sigma$.
 - A language $L$ over $\Sigma$ is a set of strings over $\Sigma$.
   - $L \subseteq \Sigma^*$.
+
+## Regular Expressions
+
+- Regular expressions are a way to describe languages.
+  - They are compact, expressive, precise, and easy to parse.
+- Tokens are typically described using regex.
+- Usually represented by $R$
+
+- A regular expression is either
+  1. $\phi$
+  2. $\epsilon$
+  3. $a$, where $a \in \Sigma$
+  4. $R_1 | R_2$
+  5. $R_1 \cdot R_2$
+  6. $(R)$
+  7. $R^*$
+
+- The Language $L(R)$ is given by:
+  1. $L(\phi) = \phi$
+  2. $L(\epsilon) = \{\epsilon\}$
+  3. $L(a) = \{a\}$
+  4. $L(R_1 | R_2) = L(R_1) \cup L(R_2)$
+  5. $L(R_1 \cdot R_2) = L(R_1) \cdot L(R_2)$
