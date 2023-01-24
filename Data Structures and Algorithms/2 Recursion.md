@@ -6,9 +6,9 @@ General form: $T(n) = aT(\frac{n}{b}) + f(n)$
 
 ### Examples
 
-- **Binary Search**: $T(n) = T(\frac{n}{2}) + 1$. Where$a = 1$, $b = 2$, and$f(n) = 1$.
-- **Merge and Quick Sort**: $T(n) = 2T(\frac{n}{2}) + cn$. Where$a = 2$,$b = 2$, and$f(n) = cn$.
-- **Strassen Matrix Multiplication**: $T(n) = 7T(\frac{n}{2}) + cn^2$. Where$a = 7$,$b = 2$, and$f(n) = cn^2$.
+- **Binary Search**: $T(n) = T(\frac{n}{2}) + 1$. Where $a = 1$, $b = 2$, and $f(n) = 1$.
+- **Merge and Quick Sort**: $T(n) = 2T(\frac{n}{2}) + cn$. Where $a = 2$, $b = 2$, and $f(n) = cn$.
+- **Strassen Matrix Multiplication**: $T(n) = 7T(\frac{n}{2}) + cn^2$. Where $a = 7$, $b = 2$, and $f(n) = cn^2$.
 
 ---
 
@@ -16,10 +16,10 @@ General form: $T(n) = aT(\frac{n}{b}) + f(n)$
 
 - If $f(n) = O(n ^{\log _b a -\epsilon})$ for some $\epsilon > 0$, then $T(n) = \Theta(n ^{\log_b a})$.
 - If $f(n) = \Omega(n ^{\log _b a + \epsilon})$ for some $\epsilon > 0$, then $T(n) = \Theta(f(n))$.
-  - Iff $af(\frac{n}{b}) \le cf(n) $ for some$ c < 1$ and large $n$.
+  - Iff $af(\frac{n}{b}) \le cf(n)$ for some $c < 1$ and large $n$.
 - If $f(n) = \Theta(n ^{\log _b a })$, then $T(n) = \Theta(n ^{\log_b a} \log n)$.
 
-**Compare the growth of 2 functions:** - $f(n)$and$g(n) = n^{\log _b a}$
+**Compare the growth of 2 functions:** - $f(n)$ and $g(n) = n^{\log _b a}$
 
 ### The 3 disjoint cases
 
@@ -29,9 +29,9 @@ General form: $T(n) = aT(\frac{n}{b}) + f(n)$
 
 ### Usage
 
-**Solve${lim}_{n \to \infty} \frac{f(n)}{n^{\log_b a}}$**
+**Solve ${lim}_{n \to \infty} \frac{f(n)}{n^{\log_b a}}$**
 
-**Case 2** - if${lim} = c$for some positive constant$c$check for .
+**Case 2** - if ${lim} = c$ for some positive constant $c$.
 
 - $f(n) = \Theta(n^{\log_b a})$
 - $T(n) = \Theta ( \log(n) n ^ {\log _b a})$
@@ -55,7 +55,7 @@ General form: $T(n) = aT(\frac{n}{b}) + f(n)$
 
 1. $T(n) = 8T(\frac{n}{2}) + n^2$
 
-   We have$a=8$, $b=2$, and $f(n) = n^2$.
+   We have $a=8$, $b=2$, and $f(n) = n^2$.
 
    - $\log _2 8 = 3$
    - $f(n) = n^2$ and $g(n) = n^3$
@@ -74,11 +74,11 @@ General form: $T(n) = aT(\frac{n}{b}) + f(n)$
 
 3. $T(n) = 2T(\frac{n}{4}) + n^2$
 
-   We have$a=2$, $b=4$, and$f(n) = n^2$.
+   We have $a=2$, $b=4$, and $f(n) = n^2$.
 
    - $\log _4 2 = 0.5$
    - $f(n) = n^2$ and $g(n) = \sqrt{n}$
-   - $af(\frac{n}{b}) \le cf(n) $for c in $[1/8, 1]$
+   - $af(\frac{n}{b}) \le cf(n)$ for $c \in [1/8, 1]$
      - $\frac{1}{8} n^2 \le cn^2$
    - $T(n) = \Theta (n^2)$
 
