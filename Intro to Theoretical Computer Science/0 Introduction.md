@@ -34,6 +34,24 @@ A set $A \subset B$ is a **proper subset** of $B$ if every element of $A$ is als
 A k-tuple is an ordered set.
 Tuples with more than two members (k-members) are called k-tuples.
 
+### Operations
+
+- Union: $A \cup B = \{x \mid x \in A \lor x \in B\}$
+- Intersection: $A \cap B = \{x \mid x \in A \land x \in B\}$
+- Subtraction: $A - B = \{x \mid x \in A \land x \notin B\}$
+
+### Cartesian Product
+
+The Cartesian product of two sets $A$ and $B$ is the set of all ordered pairs $(a, b)$ where $a \in A$ and $b \in B$.
+The order of the elements in the pair matters (non-commutative): $A \times B \neq B \times A$.
+
+Example:
+
+$A = \{1, 2, 3\}$ and $B = \{x, y\}$
+
+$A \times B = \{(1, x), (1, y), (2, x), (2, y), (3, x), (3, y)\}$
+$B \times A = \{(x, 1), (x, 2), (x, 3), (y, 1), (y, 2), (y, 3)\}$
+
 ---
 
 ## Fundamental Questions
