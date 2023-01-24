@@ -1,5 +1,14 @@
 # Introduction to Theoretical Computer Science
 
+## Mathematical Notions
+
+- Universal Quantifier $\forall$: "For All" elements.
+- Existential Quantifier $\exists$: "There Exists" an element.
+- Conjunction $\land$: Logical $\text{and}$ operator $x \And y$
+- Disjunction $\lor$: Logical $\text{or}$ operator $x | y$
+
+---
+
 ## Fundamental Questions
 
 - What are fundamental capabilities and limitations of computers?
