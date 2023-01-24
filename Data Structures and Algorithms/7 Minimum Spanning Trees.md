@@ -132,4 +132,4 @@ Dijkstra(G, s)
   - Total running time is: $O((|E| + |V|) \log|V|)$
     - $O(|E| \log|V|)$ if the graph is connected
 - If we use a fibonacci heap for Q:
-  - The total running time is $O(|V| \log |V| + |E|)
+  - The total running time is $O(|V| \log |V| + |E|)$
