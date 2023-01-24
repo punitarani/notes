@@ -118,3 +118,29 @@ for file in ftrig*.dat; do
     done < $file
 done
 ```
+
+### Functions
+
+```bash
+#!/bin/bash
+
+N=${1:?factorial input error}
+
+function factorial(){
+    local N=$1
+    if (( $N > 1 )); then
+        local i=$((N-1))
+        local j=$(factorial $i) # note the use of $(...)
+        local k=$((N*j))
+        echo $k
+    else
+        echo 1
+    fi
+}
+
+factorial $N
+```
+
+- The `function` keyword is optional.
+- Arguments aren't declared in the function.
+  - Passed as positional parameters: `some_function $1 $2`.
