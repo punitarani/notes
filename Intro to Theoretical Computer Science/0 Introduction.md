@@ -7,6 +7,33 @@
 - Conjunction $\land$: Logical $\text{and}$ operator $x \And y$
 - Disjunction $\lor$: Logical $\text{or}$ operator $x | y$
 
+## Sets
+
+A set is a group of objects represented as a unit. The objects of a set S are called elements or members of S.
+
+Example: $\{1, 2, 3\}$, $\{a, b, c\}$, $\{a, 1, \text{hello}\}$
+
+Membership: $x \in S$ or $x \notin R$,
+where $x$ is an element and $S$ is a set
+and $x$ is not an element of $R$.
+
+- Order of elements does not matter.
+- Duplicate elements are not allowed.
+- **Cardinality**: the number of elements in a set. $\mid S \mid$.
+  - A set with no elements is called the **empty set** and is denoted by $\emptyset$.
+- Sets can be defined by their properties. Example: $S = \{x \mid x = m^2 \land \exists m \in \N$.
+
+### Subsets
+
+A set $A \subseteq B$ is a **subset** of $B$ if every element of $A$ is also an element of $B$.
+
+A set $A \subset B$ is a **proper subset** of $B$ if every element of $A$ is also an element of $B$ and $A \neq B$.
+
+### K-Tuples (Ordered Sets)
+
+A k-tuple is an ordered set.
+Tuples with more than two members (k-members) are called k-tuples.
+
 ---
 
 ## Fundamental Questions
