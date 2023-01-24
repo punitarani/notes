@@ -8,3 +8,8 @@
 - [Operating Systems](https://github.com/punitarani/notes/tree/main/Operating%20Systems)
 - [Principles of Programming Languages](https://github.com/punitarani/notes/tree/main/Principles%20of%20Programming%20Languages)
 - [Scientific Computing](https://github.com/punitarani/notes/tree/main/Scientific%20Computing)
+
+### Other Notes
+
+- [Applied Computational Methods](https://github.com/punitarani/MAT-421)
+- [Mathematical Methods in Data Science](https://github.com/punitarani/MAT-494)
