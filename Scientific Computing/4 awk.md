@@ -41,3 +41,42 @@ Basic syntax: `awk 'condition{action} file'`
   - Get all processes
   - Get the last field (process name) and the first field (process id) of all lines separated by a tab
   - Print the first line and all lines that start with `a` or `p`
+
+## awk scripts
+
+```awk
+!/usr/bin/awk -f
+BEGIN { executed before the file is read }
+{
+    script applied to each line of the file
+}
+END { executed after the entire file has been read }
+```
+
+- The shebang `!/usr/bin/awk -f` is optional but allows the script to be executed directly.
+  - With shebang: `./script.awk` after `chmod +x script.awk`
+  - Without shebang: `awk -f script.awk`
+  - Run `which awk` to find the path to the awk executable.
+- The _BEGIN_ and _END_ blocks are optional.
+- Spaces around `=` are optional.
+- Semicolons are optional but required if multiple commands are on one line.
+
+### Example: Table of Trig Values
+
+```awk
+#!/usr/bin/awk -f
+BEGIN {
+    pi = 4*atan2(1,1)
+    
+    fmt1 = "%3s %8s %8s %8s %8s\n"
+    fmt2 = "%3i %8.4f %8.4f %8.4f %8.4f\n"
+    
+    printf(fmt1,"deg","rad","cos","sin","tan")
+    
+    for (n=0;n<=90;n++) {
+        ang = n*(pi/180)
+        printf(fmt2,n,ang,cos(ang),sin(ang),(n==90)?9999:sin(ang)/cos(ang))
+    }
+    exit
+}
+```
