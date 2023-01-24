@@ -17,6 +17,25 @@ Basic syntax: `awk 'condition{action} file'`
 - `RS` record separator (default is newline "\n")
 - `$NR` number of the current record (line)
 - `$FNR` number of the current record (line) within the current file
-- `$NF` number of fields in the current record (line)
 - `$0` the current line
 - `$<n>` the n-th field of the current line
+- `$NF` the last field of the current line
+
+### Examples
+
+- `awk '/#/{print $0} file'`
+  - Print all lines that contain a `#` character.
+- `awk '{print $1}' file`
+  - Print the first field of all lines.
+- `awk '/^error/{print $2, $3}' file`
+  - Print the second and third field of all lines that start with `error`.
+- `awk '{print $1, log($2)}' file`
+  - Print the first field and the logarithm of the second field of all lines.
+- `awk '$2>0{print $1, log($2)}' file`
+  - Print the first field and the logarithm of the second field of all lines where the second field is greater than zero.
+- `awk -F"\t" '{print $1 ", " $2}' file`
+  - Print the first and second field of all lines, separated by a comma and a space.
+- `ps | awk '{print $NF "\t" $1}' | awk 'NR==1||/^[ap]/{print $0}'`
+  - Get all processes
+  - Get the last field (process name) and the first field (process id) of all lines separated by a tab
+  - Print the first line and all lines that start with `a` or `p`
