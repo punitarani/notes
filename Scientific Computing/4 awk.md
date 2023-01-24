@@ -12,6 +12,8 @@ Basic syntax: `awk 'condition{action} file'`
 - `action` is a command to be executed if the condition is true.
 - `file` is the file to be processed.
 
+### Variables
+
 - `NF` field count of the current line
 - `FS` field separator (default is space " ")
 - `RS` record separator (default is newline "\n")
