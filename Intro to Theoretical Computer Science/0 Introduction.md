@@ -52,6 +52,15 @@ $A = \{1, 2, 3\}$ and $B = \{x, y\}$
 $A \times B = \{(1, x), (1, y), (2, x), (2, y), (3, x), (3, y)\}$
 $B \times A = \{(x, 1), (x, 2), (x, 3), (y, 1), (y, 2), (y, 3)\}$
 
+### Functions and Relations
+
+A function is a mapping from one set to another set.
+The input set is called the domain and the output set is called the range.
+
+$f: D \rightarrow R$
+
+Example: $f: {1, 2, 3} \rightarrow {x, y, z}$
+
 ---
 
 ## Fundamental Questions
