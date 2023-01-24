@@ -6,7 +6,7 @@
 - [Distributed Software Development](https://github.com/punitarani/notes/tree/main/Distributed%20Software%20Development)
 - [Theoretical Computer Science](https://github.com/punitarani/notes/tree/main/Theoretical%20Computer%20Science)
 - [Operating Systems](https://github.com/punitarani/notes/tree/main/Operating%20Systems)
-- [Principles of Programming Languages](https://github.com/punitarani/notes/tree/main/Principles%20of%20Programming%20Languages)
+- [Programming Languages](https://github.com/punitarani/notes/tree/main/Programming%20Languages)
 - [Scientific Computing](https://github.com/punitarani/notes/tree/main/Scientific%20Computing)
 
 ### Other Notes
