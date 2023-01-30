@@ -45,3 +45,15 @@
 - Terminal symbols are the actual characters of the language, such as keywords, operators, and punctuation.
 - Non-terminal symbols represent the different syntactic elements of the language, such as statements, expressions, and declarations.
 - BNF is widely used to specify the syntax of programming languages, and many programming languages have a BNF grammar that defines their syntax.
+
+Example:
+
+```text
+<list> ::= <item> | <item> , <list>
+<item> ::= [A-Za-z]+
+<number> ::= [0-9]+
+
+<expression> ::= <term> + <expression> | <term>
+<term> ::= <factor> * <term> | <factor>
+<factor> ::= <number> | ( <expression> )
+```
