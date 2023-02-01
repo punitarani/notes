@@ -146,3 +146,139 @@ public class RunThreads {
 
 - `start()` starts the thread.
 - `join()` waits for the thread to finish.
+
+## Examples
+
+### Array Sum
+
+#### `Worker.java`
+
+```java
+ // Worker inner class to add up a section of the array.
+public class Worker extends Thread {
+    int start;
+    int end;
+    double sum;
+    double[] data;
+
+    Worker(int start, int end, double[] d) {
+        this.start = start;
+        this.end = end;
+        this.data=d;
+        sum = 0;
+    }
+
+
+    // Computes the sum for our start..end section
+    // in the array (client should call getSum() later).
+    public void run() {
+        for (int i=start; i<end; i++) {
+            sum += data[i];
+        }
+        //sync.release();
+    }
+
+    public double getSum() {
+        return sum;
+    }
+}
+```
+
+#### `addArrayThread.java`
+
+```java
+import java.util.*;
+import java.util.concurrent.*;
+
+
+
+public class addArrayThread {
+    private double[] data;
+
+    public addArrayThread(double[] data) {
+        this.data=data;
+    }
+
+    public void runParallel() {
+        int numWorkers = 10;
+
+        // Make and start all the workers, keeping them in a list.
+        List<Worker> workers = new ArrayList<Worker>();
+        System.out.println(data.length);
+
+        int lenOneWorker = data.length / numWorkers;
+        for (int i=0; i<numWorkers; i++) {
+            int start = i * lenOneWorker;
+            int end = (i+1) * lenOneWorker;
+            
+            // Special case: make the last worker take up all the excess.
+            if (i==numWorkers-1) {
+                end = data.length;
+            }
+
+            Worker worker = new Worker(start, end, data);
+            workers.add(worker);
+            worker.start();
+        }
+
+        try {
+            for(int i=0; i<workers.size(); i++) {
+                workers.get(i).join();
+            }
+        } catch(InterruptedException ignored) {}
+
+
+        // Gather sums from workers ()
+        int sum = 0;
+        for (Worker w: workers) {
+            System.out.println(w.getName());
+            System.out.println(w.getSum());
+            sum += w.getSum();
+        }
+
+        System.out.println("len:" + data.length + " sum:" + sum + " workers:" + numWorkers);
+    }
+}
+```
+
+#### `runArraySum.java`
+
+```java
+public class runArraysum {
+    public static void main(String[] args) { 
+        // command line argument: array_length 
+        int len = 10000000; 
+        double[] data = new double[len]; 
+        for (int i=0; i<len; i++) { 
+            data[i] = i*1.2;
+        }
+        
+
+        long startTime = System.currentTimeMillis();
+        long endTime=0;
+        addArrayThread at = new addArrayThread(data); 
+        at.runParallel(); 
+        endTime = System.currentTimeMillis();
+        
+        System.out.println("time elapsed with thread" + (endTime - startTime));
+        
+
+        // The following code does the same operation above without thread
+        startTime = System.currentTimeMillis();
+        
+        double[] array = new double[len]; 
+        for (int i=0; i<len; i++) { 
+            array[i] = i*1.2; 
+        } 
+        
+        double sum=0;
+        for ( int i=0; i<len; i++) { 
+            sum += array[i]; 
+        }
+        
+        endTime = System.currentTimeMillis();
+        
+        System.out.println("time elapsed without thread" + (endTime - startTime));
+        }   
+    } 
+```
