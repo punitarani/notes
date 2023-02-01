@@ -39,3 +39,13 @@
 - **portType**: What operations(functions) will be supported?
 - **binding**: How will the messages be transmitted? What SOAP-specific details are there?
 - **service**: Where is the service located?
+
+## SOAP
+
+- SOAP stands for Simple Object Access Protocol.
+- It is used to transport messages between web services and clients.
+- A SOAP message is an XML document that contains:
+  - **Envelope**: The root element of a SOAP message.
+  - **Header**: Contains information about the message.
+  - **Body**: Contains the actual message.
+- SOAP messages are sent over HTTP.
