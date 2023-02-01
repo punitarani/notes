@@ -17,3 +17,25 @@
   - Opening and closing tags must match
   - Documents must have a root element
   - Documents are recommended to have an XML declaration
+
+## WSDL
+
+- WSDL stands for Web Services Description Language.
+- It is an XML-based language that describes the functionality offered by a web service.
+- The 4 critical aspects of a WSDL document are:
+  1. **Functionality Description** of the services in standard taxonomy.
+  2. **Contract of Parameter Types** and return type of function (service) calls.
+  3. **Binding** information about hte transport protocol to be used (Ex: SOAP).
+  4. **Address** information for locating the specified service.
+- The last 3 aspects can be automatically generated.
+- Web services described in WSDL can be searched and matched with the requirement.
+- Web services described in WSDL provides the remote call detail.
+
+### Main Components of WSDL
+
+- **definitions**: Root WSDL element
+- **types**: What data types will be transmitted?
+- **message** What messages will be transmitted?
+- **portType**: What operations(functions) will be supported?
+- **binding**: How will the messages be transmitted? What SOAP-specific details are there?
+- **service**: Where is the service located?
