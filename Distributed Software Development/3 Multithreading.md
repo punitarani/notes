@@ -210,7 +210,7 @@ public class addArrayThread {
         for (int i=0; i<numWorkers; i++) {
             int start = i * lenOneWorker;
             int end = (i+1) * lenOneWorker;
-            
+
             // Special case: make the last worker take up all the excess.
             if (i==numWorkers-1) {
                 end = data.length;
@@ -245,40 +245,163 @@ public class addArrayThread {
 
 ```java
 public class runArraysum {
-    public static void main(String[] args) { 
-        // command line argument: array_length 
-        int len = 10000000; 
-        double[] data = new double[len]; 
-        for (int i=0; i<len; i++) { 
+    public static void main(String[] args) {
+        // command line argument: array_length
+        int len = 10000000;
+        double[] data = new double[len];
+        for (int i=0; i<len; i++) {
             data[i] = i*1.2;
         }
-        
+
 
         long startTime = System.currentTimeMillis();
         long endTime=0;
-        addArrayThread at = new addArrayThread(data); 
-        at.runParallel(); 
+        addArrayThread at = new addArrayThread(data);
+        at.runParallel();
         endTime = System.currentTimeMillis();
-        
+
         System.out.println("time elapsed with thread" + (endTime - startTime));
-        
+
 
         // The following code does the same operation above without thread
         startTime = System.currentTimeMillis();
-        
-        double[] array = new double[len]; 
-        for (int i=0; i<len; i++) { 
-            array[i] = i*1.2; 
-        } 
-        
-        double sum=0;
-        for ( int i=0; i<len; i++) { 
-            sum += array[i]; 
+
+        double[] array = new double[len];
+        for (int i=0; i<len; i++) {
+            array[i] = i*1.2;
         }
-        
+
+        double sum=0;
+        for ( int i=0; i<len; i++) {
+            sum += array[i];
+        }
+
         endTime = System.currentTimeMillis();
-        
+
         System.out.println("time elapsed without thread" + (endTime - startTime));
-        }   
-    } 
+        }
+    }
+```
+
+### Bank Account Synchronization
+
+#### `DepositThread.java`
+
+```java
+public class DepositThread implements Runnable {
+    private Account account;
+    private double amount;
+
+    public DepositThread(Account account, double amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.deposit(amount);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {}
+    }
+}
+```
+
+#### `WithdrawThread.java`
+
+```java
+public class WithdrawThread implements Runnable {
+    private Account account;
+    private double amount;
+
+    public WithdrawThread(Account account, double amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.withdraw(amount);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {}
+
+    }
+}
+```
+
+#### `Account.java`
+
+```java
+public class Account {
+    private double balance = 0;
+
+    public Account(double balance) {
+        this.balance = balance;
+    }
+
+    // if ‘synchronized’ is removed, the outcome is unpredictable
+    public synchronized void deposit(double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Can’t deposit.");
+        }
+
+        this.balance += amount;
+
+        System.out.println("Deposit " + amount + " in thread" + Thread.currentThread().getId() + ", balance is " + balance);
+    }
+
+    // if ‘synchronized’ is removed, the outcome is unpredictable
+    public synchronized void withdraw(double amount) {
+        if (amount < 0 || amount > this.balance) {
+            throw new IllegalArgumentException("Can’t withdraw.");
+        }
+
+        this.balance -= amount;
+
+        System.out.println("Withdraw " + amount + " in thread " + Thread.currentThread().getId() + ", balance is " + balance);
+    }
+}
+```
+
+#### `InternetBankingSystem.java`
+
+```java
+// InternetBankingSystem.java: A simple program showing a typical invocation of banking operations via multiple threads.
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class InternetBankingSystem {
+    public static void main(String[] args) {
+        Account accountObject = new Account(100);
+
+        /* Without thread pool
+        new Thread(new DepositThread(accountObject,30)).start();
+        new Thread(new DepositThread(accountObject,20)).start();
+        new Thread(new DepositThread(accountObject,10)).start();
+        new Thread(new WithdrawThread(accountObject,30)).start();
+        new Thread(new WithdrawThread(accountObject,50)).start();
+        new Thread(new WithdrawThread(accountObject,20)).start();
+        */
+
+        // With thread pool
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        // ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        Runnable worker;
+        for (int i = 0; i < 10; i++) {
+
+            if (i % 2 == 0) {
+                worker = new DepositThread(accountObject, i * 10);
+            } else {
+                worker = new WithdrawThread(accountObject, i * 5);
+            }
+
+            executor.execute(worker);
+        }
+
+        executor.shutdown();
+        while (!executor.isTerminated()) {}
+        System.out.println("Finished all threads");
+    }
+}
 ```
