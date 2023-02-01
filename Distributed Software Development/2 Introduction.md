@@ -49,3 +49,19 @@
   - **Header**: Contains information about the message.
   - **Body**: Contains the actual message.
 - SOAP messages are sent over HTTP.
+
+## Object Oriented Application Development Process
+
+1. Requirement Analysis
+2. Problem Decomposition
+3. Class Writing
+4. Class Testing
+5. Class Library
+6. Application Integration
+7. Testing Deployment
+
+![Object Oriented Application Development Process](img/2%20OOA%20Dev%20Process.png)
+
+### Service Oriented Application Development Process
+
+![Service Oriented Application Development Process](img/2%20SOA%20Dev%20Process.png)
