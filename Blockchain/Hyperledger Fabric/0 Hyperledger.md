@@ -1,4 +1,4 @@
-# Hyperledger Fabric
+# Hyperledger
 
 Hyperledger is an open-source, collaborative platform for developing and deploying blockchain applications, primarily for use in enterprise settings.
 It is governed by the Linux Foundation and provides a variety of tools and frameworks for building decentralized applications.
