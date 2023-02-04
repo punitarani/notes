@@ -29,4 +29,4 @@ and consistently synchronized through a consensus mechanism.
 - Process of synchronizing ledger transactions across the network.
 - Ensure that only approved transactions are committed to the ledger.
 
-## [Applications of Blockchain](../0%20Blockchain.md#application-of-blockchain)
+## [Applications of Blockchain](../0%20Blockchain.md#applications-of-blockchain)
