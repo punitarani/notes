@@ -46,3 +46,7 @@ and consistently synchronized through a consensus mechanism.
   - Chaincode mostly interacts with the world state not the transaction log.
   - Chaincode can be written in Go, Node.js, and Java.
 - Consensus has to be FIFO and supports pluggable consensus mechanisms.
+
+---
+
+_Source: [Hyperledger Fabric Documentation](https://hyperledger-fabric.readthedocs.io/en/latest/)_
