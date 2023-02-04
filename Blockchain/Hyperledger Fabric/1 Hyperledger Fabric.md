@@ -30,3 +30,19 @@ and consistently synchronized through a consensus mechanism.
 - Ensure that only approved transactions are committed to the ledger.
 
 ## [Applications of Blockchain](../0%20Blockchain.md#applications-of-blockchain)
+
+## Hyperledger Fabric Summary
+
+- Private and Permissioned Blockchain.
+- Participants are enrolled through a trusted Membership Service Provider (MSP).
+- Pluggable everything: storage formats, consensus mechanisms, MSPs.
+- Channels can be used to isolate transactions within a network.
+  - Create network of networks.
+- Shared ledger has 2 components: World State and Transaction Log.
+  - World State: Current state of the ledger. The database of the ledger.
+  - Transaction Log: History of all transactions for the world state.
+  - Default storage is LevelDB (key-value store).
+- Smart contracts are written in Chaincode and invoked by the client application.
+  - Chaincode mostly interacts with the world state not the transaction log.
+  - Chaincode can be written in Go, Node.js, and Java.
+- Consensus has to be FIFO and supports pluggable consensus mechanisms.
