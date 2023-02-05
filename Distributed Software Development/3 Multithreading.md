@@ -147,6 +147,66 @@ public class RunThreads {
 - `start()` starts the thread.
 - `join()` waits for the thread to finish.
 
+## Synchronization
+
+- Producer and consumer are two threads that share a common resource.
+
+  - Producer produces data and puts it in the resource.
+  - Buffer is a resource that is shared by the producer and consumer.
+  - Consumer consumes data from the resource.
+
+- Synchronization is used to ensure that only one thread can access the resource at a time.
+- **Synchronized Methods**: `synchronized` keyword is used to make a method synchronized.
+  - Only one thread can execute a synchronized method at a time.
+  - Other threads that try to execute the method are blocked until the method is finished.
+
+`synchronized` code example:
+
+```C#
+public class Counter {
+    private int count = 0;
+    private bool locked = false;
+
+    public synchronized void increment() {
+        while (locked) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        count++;
+        locked = true;
+        notify();
+    }
+
+    public synchronized void decrement() {
+        while (locked) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        count--;
+        locked = true;
+        notify();
+    }
+
+    public synchronized int getCount() {
+        while (!locked) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        locked = false;
+        notify();
+        return count; }
+}
+```
+
 ## Examples
 
 ### Array Sum
