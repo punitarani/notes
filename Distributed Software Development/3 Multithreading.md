@@ -232,6 +232,46 @@ public class Counter {
 }
 ```
 
+### Monitor
+
+- **Monitor**: A monitor is an object that is used to control access to a shared resource.
+  - It uses `Enter` and `Exit` methods to control access to the resource.
+  - A monitor is associated with a class or an object.
+  - A monitor is entered when a thread executes a synchronized method or block.
+  - A monitor is exited when a thread finishes executing a synchronized method or block.
+  - Only one thread can enter a monitor at a time.
+  - Other threads that try to enter the monitor are blocked until the monitor is exited.
+
+Monitor code example:
+
+```C#
+public void produce() {
+    for (int i = 0; i < 10; i++) {
+        Monitor.Enter(SomeClass.buffer);
+        try {
+            SomeClass.buffer.set(i);
+            Console.WriteLine("Produced: " + i);
+        } finally {
+            Monitor.Exit(SomeClass.buffer);
+        }
+    }
+}
+```
+
+```C#
+public void consume() {
+    for (int i = 0; i < 10; i++) {
+        Monitor.Enter(SomeClass.buffer);
+        try {
+            int value = SomeClass.buffer.get();
+            Console.WriteLine("Consumed: " + value);
+        } finally {
+            Monitor.Exit(SomeClass.buffer);
+        }
+    }
+}
+```
+
 ## Examples
 
 ### Array Sum
