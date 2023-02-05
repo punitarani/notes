@@ -147,7 +147,32 @@ public class RunThreads {
 - `start()` starts the thread.
 - `join()` waits for the thread to finish.
 
-## Synchronization
+## Thread implementation in C#
+
+There are 3 ways to create a thread in C#:
+
+Method 1: Using the `Thread` class
+
+```C#
+Thread thread1 = new Thread("Thread 1");
+thread1.Start();
+thread1.Join();
+```
+
+Method 2: Using the `ThreadStart` delegate
+
+```C#
+Thread thread2 = new Thread(new ThreadStart("Thread 2"));
+```
+
+Method 3: Using Lambda expressions
+
+```C#
+Thread thread3 = new Thread(() => SomeMethod());
+thread3.Start();
+```
+
+### Synchronization
 
 - Producer and consumer are two threads that share a common resource.
 
