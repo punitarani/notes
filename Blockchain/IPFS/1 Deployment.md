@@ -3,6 +3,7 @@
 ## Private IPFS Network
 
 **System**: Raspberry Pi 4 4GB
+
 **OS**: Ubuntu Server 22.04.1 64-bit
 
 ```bash
@@ -120,6 +121,13 @@ cd ipfs
    ```bash
    docker start ipfs_host
    ```
+
+---
+
+Files:
+
+- `hello_world`: `QmfM2r8seH2GiRaC4esTjeraXEachRt8ZsSeGaWTPLyMoG`
+- `printing_greetings`: `Qmdbd9iBHSKM3SQ9G849YBiczsbPUGUu3pNPgZnigs8Cb5`
 
 ---
 
