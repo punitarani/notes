@@ -113,6 +113,12 @@ message Person {
 // Each .proto file can contain multiple messages.
 ```
 
+#### Syntax Notes
+
+- `enum`
+  - Must be defined before `message` that uses it.
+  - Must have a value of `0` for the first item.
+
 ### Data Types (Scalar)
 
 - double
@@ -143,9 +149,9 @@ Check `protoc` installation with `protoc --version`
 
 1. Download the latest release from [github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
 2. Extract the zip file to a directory
-    - Ideally, to "C:\Program Files\protoc-<version>-win64"
+   - Ideally, to "C:\Program Files\protoc-<version>-win64"
 3. Add the directory to the `PATH` environment variable
-    - `C:\Program Files\protoc-<version>-win64\bin`
+   - `C:\Program Files\protoc-<version>-win64\bin`
 
 ### Go plugin and package
 
