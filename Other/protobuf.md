@@ -133,6 +133,53 @@ message Person {
 
 Read more: [Scalar Value Types](https://developers.google.com/protocol-buffers/docs/proto3#scalar)
 
+## Installation and Usage
+
+### protoc
+
+Check `protoc` installation with `protoc --version`
+
+#### Installing `protoc` on Windows
+
+1. Download the latest release from [github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
+2. Extract the zip file to a directory
+    - Ideally, to "C:\Program Files\protoc-<version>-win64"
+3. Add the directory to the `PATH` environment variable
+    - `C:\Program Files\protoc-<version>-win64\bin`
+
+### Go plugin and package
+
+#### protoc-gen-go
+
+Read more: [Go Tutorial](https://protobuf.dev/getting-started/gotutorial/)
+
+Install Go protobuf plugin:
+
+```bash
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+```
+
+Check that the plugin is installed:
+
+```bash
+protoc-gen-go --version
+```
+
+#### Go package
+
+```go
+import "google.golang.org/protobuf/proto"
+```
+
+This is the latest module superseding `github.com/golang/protobuf`.
+It has updated and simplified API and support for protobuf reflection.
+
+#### Generate Go code
+
+```bash
+protoc -I=<import_dir> --go_out=<output_dir> <proto_file>
+```
+
 ## FAQ
 
 - What is protobuf reflection?
