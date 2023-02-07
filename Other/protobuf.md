@@ -10,6 +10,8 @@
 - Suitable for both ephemeral network traffic and long-term data storage.
 - Supports backwards compatibility and easy evolution of data structures.
 
+Code Examples: [github.com/protocolbuffers/protobuf/examples](https://github.com/protocolbuffers/protobuf/tree/main/examples)
+
 ### Use Cases
 
 #### Ideal
@@ -59,15 +61,20 @@ Examples:
 // First non-empty, non-comment line of the file must specify the syntax.
 syntax = "proto3";
 
+
 // package defines the namespace for the generated code.
 package mypackage;
 
+
 // import allows for importing definitions from other files.
 // public imports are visible to other files that import this file.
-import public "dir/other_public.proto";
-import "dir/other.proto";
 // private imports are only visible to this file.
 // public imports usually go first, not required.
+import public "dir/other_public.proto";
+import "dir/other.proto";
+
+import "google/protobuf/timestamp.proto";
+
 
 // enum allows for defining a set of named constants.
 enum Gender {
@@ -76,20 +83,31 @@ enum Gender {
     FEMALE = 2;
 }
 
+
 // message defines a structure.
 message Person {
     string name = 1;
     int32 id = 2;
     Gender gender = 3;
 
-    // Nested message.
-    message PhoneNumber {
-        string number = 1;
-        string type = 2;
+    // Nested enum
+    enum PhoneType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
     }
 
-    // Repeated field allows for a list of values.
+    // Nested message
+    message PhoneNumber {
+        string number = 1;
+        PhoneType type = 2;
+    }
+
+    // repeated field allows for a list of values
     repeated string hobbies = 4;
+
+    // Use a field from another file
+    google.protobuf.Timestamp last_updated = 5;
 }
 
 // Each .proto file can contain multiple messages.
