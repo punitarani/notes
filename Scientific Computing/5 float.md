@@ -22,23 +22,21 @@ ${-1}^s \times 2^{e-bias} \times (1 + \sum_{i=1}^n m_i \times 2^{-i})$
 Floating point numbers are represented in binary.
 They can either be single precision (32 bits) or double precision (64 bits).
 
-### Precision
-
-#### Float Precision
+### Float Precision
 
 - Sign bit is 1 bit.
 - Exponent is 8 bits.
 - Mantissa is 23 bits.
 
-#### Double Precision
+### Double Precision
 
 - Sign bit is 1 bit.
 - Exponent is 11 bits.
 - Mantissa is 52 bits.
 
-### Conversion
+## Conversion
 
-#### Converting Float to Decimal
+### Converting Float to Decimal
 
 `float`: $11000000011000010011000000000000$
 
@@ -55,7 +53,7 @@ Converting to decimal:
 
 $-1^s \times 2^{e-bias} \times (1 + m) = -1 \times 2^{1} \times 1.75927734375 = 3.51655274$
 
-#### Converting Decimal to Float
+### Converting Decimal to Float
 
 1. Extract the sign bit.
 2. Convert the decimal number to binary.
@@ -65,7 +63,7 @@ $-1^s \times 2^{e-bias} \times (1 + m) = -1 \times 2^{1} \times 1.75927734375 = 
    - $m = 1 + \sum_{i=1}^n m_i \times 2^{-i}$
    - Round to the number of bits in the mantissa.
 
-##### Example: `-123.456`
+#### Example: `-123.456`
 
 1. $s = 1$
 2. $123.456 = 1111011.01110100101111000110101_2$
