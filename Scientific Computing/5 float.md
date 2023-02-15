@@ -72,3 +72,26 @@ $-1^s \times 2^{e-bias} \times (1 + m) = -1 \times 2^{1} \times 1.75927734375 = 
 4. $m = 11101101110100101111001$
 
 `float`: $11000010111101101110100101111001_2$
+
+## Machine-Epsilon
+
+- Computer Numbers (CNs) are the finite precision numbers that a computer can represent.
+- The machine-epsilon $\epsilon$ is the difference between 1 and the next CN.
+  - For single precision, $\epsilon = 2^{-23} = 1.19 \times 10^{-7}$.
+  - For double precision, $\epsilon = 2^{-52} = 2.22 \times 10^{-16}$.
+- When trying to store a number $1 < x < 1 + \epsilon$, the computer will round to the nearest CN.
+
+The gap between two consecutive CNs around $x$ scales with $x$ as $\epsilon|x|$.
+
+$fl(x)$ is the CN closest to $x$.
+
+$fl(x) = x(1 + \alpha)$
+where $\alpha$ is the error.
+
+$|\alpha| = \frac{|fl(x) - x|}{|x|} \le \frac{\epsilon}{2}$
+
+## Arithmetic
+
+- The rules of standard arithmetic do not apply to floating point numbers.
+- The arithmetic results of two CNs are not necessarily CNs.
+- The exponent field has to match the exponent of the largest.
