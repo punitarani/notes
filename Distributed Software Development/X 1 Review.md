@@ -30,3 +30,21 @@ Covers concepts from Weeks 1 to 6.
   - Fundamental concept explanation and applicability
   - Determine output and issues of code snippets
   - Complete the partial code snippets
+
+## Architectures
+
+- **2 Tier**: Client and Server
+- **3 Tier**: Presentation, Application Processing and Data Management
+- **4 Tier**: Service Repository Layer
+
+### Computer Architecture (Flynn's Classification)
+
+- **SISD**: Single Instruction (stream), Single Data (stream).
+  - Simple computers
+- **SIMD**: Single Instruction (stream), Multiple Data (streams)
+  - Vector or array computers
+- **MISD**: Multiple Instruction (streams), Single Data (stream)
+  - Fault-tolerant computers
+  - Redundant computing on same data and voting on results
+- **MIMD**: Multiple Instruction (streams), Multiple Data (streams)
+  - Multi-Core computer systems in distributed systems network
