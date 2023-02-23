@@ -116,3 +116,13 @@ Covers concepts from Weeks 1 to 6.
 
 - **OOA**: `Requirement -> Problem -> Class -> Application -> Testing -> Deployment`
 - **SOA**: within Class `Service Discovery -> Repository -> Hosting -> Registration`
+
+## Thread Lifecycle
+
+- **creation**: initialized and resources are allocated to it, but it has not yet started executing.
+- **ready**: waiting to be scheduled and has all the necessary resources to start execution.
+- **waiting**: waiting for a specific event or resource, such as I/O completion, and is not able to continue execution until that event occurs or resource becomes available.
+- **running**: actively executing instructions on the CPU.
+- **blocked**: waiting for a specific event or resource, but unlike "waiting," it cannot proceed until it is explicitly unblocked by another thread or system event.
+- **sleeping**: intentionally suspended or delayed for a certain period of time using an operating system call or programming construct.
+- **terminated**: finished execution and its resources are released back to the system for reuse.
