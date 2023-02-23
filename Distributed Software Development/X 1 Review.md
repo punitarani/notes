@@ -246,6 +246,139 @@ class BufferClass {
 }
 ```
 
+### Multithreading in C#
+
+#### Thread Implementation in C#
+
+```c#
+Thread thread1 = new Thread(MethodNameHere);
+thread1.Start();
+thread1.Join();
+```
+
+```c#
+Thread thread2 = new Thread(new ThreadStart(MethodNameHere));
+```
+
+```c#
+Thread thread3 = new Thread( () => MethodNameHere(para1, para2,…));
+thread3.start();
+```
+
+#### Thread Monitor
+
+```c#
+public void runProducer() {
+  for (int i = 0; i < 10; i++) {
+    Monitor.Enter(myMainClass.bufferCellref);
+    try {
+      myMainClass.bufferCellref.setBuffer(i);
+      Console.WriteLine("Procucer set buffer to " + i);
+    } finally {
+      Monitor.Exit(myMainClass.bufferCellref);
+    }
+  }
+}
+
+public void runConsumer() {
+  for (int i = 0; i < 10; i++) {
+    Monitor.Enter(myMainClass.bufferCellref);
+    try {
+      int j = myMainClass.bufferCellref.getBuffer();
+      Console.WriteLine("Consumer gets " + j);
+    } finally {
+      Monitor.Exit(myMainClass.bufferCellref);
+    }
+  }
+}
+
+public class myMainClass {
+  public static int items = 0;
+  public static BufferClass bufferCellref = new BufferClass();
+  public static void Main() {
+    ProducerThread p = new ProducerThread(0);
+    ConsumerThread c = new ConsumerThread(0);
+    Thread producer = new Thread(new ThreadStart(p.runProducer));
+    Thread consumer = new Thread(new ThreadStart(c.runConsumer));
+    producer.Start();// two producers will be started
+    consumer.Start(); // two consumers will be started
+    Console.WriteLine("main thread completed");
+    Console.ReadKey();
+  }
+}
+```
+
+- `Monitor.Wait(this)` is used to release the lock and wait for the signal from another thread.
+- `Monitor.PulseAll(this)` is used to signal all the threads waiting on the lock.
+- `Monitor.Enter()` does not have a timeout, so it can cause a deadlock.
+- `Monitor.TryEnter()` gives up immediately if the lock is not available.
+- `Monitor.Enter(buffer)` has a parameter of type `object` to lock.
+
+#### ReaderWriterLock
+
+Same functions as Monitor for preventing simulataneous access to a shared resource.
+More efficient as it allows multiple readers to access the resource at the same time.
+They do not allow overlapped read-write or write-write access.
+
+- `ReaderWriterLock rwlock = new ReaderWriterLock();` from `System.Threading`.
+- `rwlock.AcquireReaderLock(10);` to acquire a reader lock with 10ms timeout.
+- `rwlock.ReleaseReaderLock();` to release a reader lock.
+- `ReaderWriterLock` locks all objects between `AcquireReaderLock()` and `ReleaseReaderLock()`.
+  - Similar to Java's `synchronized` block.
+
+```c#
+using System;
+using System.Threading;
+class MyApp {
+  static Random rng = new Random();
+  static byte[] buffer = new byte[100];
+  static Thread writer;
+  static ReaderWriterLock rwlock = new ReaderWriterLock();
+  static void Main() {
+    for (int i = 0; i < 100; i++) buffer[i] = (byte)(i+1);
+    writer = new Thread(new ThreadStart(WriterFunc));
+    writer.Start();
+    Thread[] readers = new Thread[10];
+    for (int i = 0; i < 10; i++) {
+      readers[i] = new Thread(new ThreadStart(ReaderFunc));
+      readers[i].Name = (i + 1).ToString();
+      readers[i].Start();
+    }
+  }
+}
+
+static void WriterFunc() {
+  DateTime start = DateTime.Now;
+  while (DateTime.Now.Subtract(start).TotalSeconds < 10) {
+    int j = rng.Next(0, 100);
+    int k = rng.Next(0, 100);
+    rwlock.AcquireWriterLock(500);
+    try {
+      Swap(ref buffer[j], ref buffer[k]);
+    } finally {
+      rwlock.ReleaseWriterLock();
+    }
+  }
+  static void Swap(ref byte a, ref byte b) {
+    byte temp = a;
+    a = b;
+    b = temp;
+  }
+}
+
+static void ReaderFunc() {
+  for (int i = 0; writer.IsAlive; i++) {
+    int sum = 0;
+    rwlock.AcquireReaderLock(Timeout.Infinite);
+    try {
+      for (int k = 0; k < 100; k++) sum += buffer[k];
+    } finally {
+      rwlock.ReleaseReaderLock();
+    }
+  }
+}
+```
+
 ## Thread Lifecycle
 
 - **creation**: initialized and resources are allocated to it, but it has not yet started executing.
