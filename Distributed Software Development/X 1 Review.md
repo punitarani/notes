@@ -117,6 +117,135 @@ Covers concepts from Weeks 1 to 6.
 - **OOA**: `Requirement -> Problem -> Class -> Application -> Testing -> Deployment`
 - **SOA**: within Class `Service Discovery -> Repository -> Hosting -> Registration`
 
+## Multithreading
+
+- **Program** is a static piece of code in memory.
+- **Process** (task) is a program in execution. Semantically independent.
+- **Thread** is a sequence of instructions within a process. Can be semantically dependent.
+- OS manages processes and threads: scheduling, synchronization and resource allocation.
+
+### Multithreading in Java
+
+#### Thread Implementation in Java
+
+##### Extend Thread Class
+
+```java
+public class ThreadA extends Thread {
+  private String name;
+  public ThreadA(String name) {
+    this.name = name;
+  }
+  public void run() {
+    System.out.println("Hello from " + name);
+  }
+}
+```
+
+##### Implement Runnable Interface
+
+```java
+import java.lang.Runnable;
+public class ThreadB implements Runnable {
+  private String name;
+  public ThreadB(String name) {
+    this.name = name;
+  }
+  public void run() {
+    System.out.println("Hello from " + name);
+  }
+}
+```
+
+##### ThreadPool and Executor
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+public class SimpleThreadPool {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 10; i++) {
+            String name = "B " + i;
+            Runnable worker = new ThreadB(name);
+            executor.execute(worker);
+          }
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+        }
+    }
+}
+```
+
+##### Callable Interface
+
+```java
+import java.util.concurrent.Callable;
+public class ThreadACallable implements Callable<String>{
+  private String name;
+  public ThreadACallable(String n) {
+  name = n;
+  }
+  @Override
+  public String call() throws Exception {
+    Thread.sleep(1000);
+    return name;
+  }
+}
+```
+
+#### Running Threads
+
+```java
+public class RunThreads {
+  public static void main(String[] args) {
+    ThreadA a1 = new ThreadA("Thread A");
+    ThreadB b = new ThreadB("Thread B");
+    Thread b1 = new Thread(b);
+    a1.start();
+    b1.start();
+    try {
+      a1.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+#### Thread Synchronization
+
+```java
+class BufferClass {
+  private int bufferValue = 0;
+  private boolean writeable = true;
+  public synchronized void write(int value) {
+    while (!writeable) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+    bufferValue = value;
+    writeable = false;
+    notify();
+  }
+  public synchronized int read() {
+    while (writeable) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+    writeable = true;
+    notify();
+    return bufferValue;
+  }
+}
+```
+
 ## Thread Lifecycle
 
 - **creation**: initialized and resources are allocated to it, but it has not yet started executing.
