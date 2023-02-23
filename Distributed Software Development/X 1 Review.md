@@ -250,24 +250,24 @@ class BufferClass {
 
 #### Thread Implementation in C#
 
-```c#
+```csharp
 Thread thread1 = new Thread(MethodNameHere);
 thread1.Start();
 thread1.Join();
 ```
 
-```c#
+```csharp
 Thread thread2 = new Thread(new ThreadStart(MethodNameHere));
 ```
 
-```c#
+```csharp
 Thread thread3 = new Thread( () => MethodNameHere(para1, para2,…));
 thread3.start();
 ```
 
 #### Thread Monitor
 
-```c#
+```csharp
 public void runProducer() {
   for (int i = 0; i < 10; i++) {
     Monitor.Enter(myMainClass.bufferCellref);
@@ -326,7 +326,7 @@ They do not allow overlapped read-write or write-write access.
 - `ReaderWriterLock` locks all objects between `AcquireReaderLock()` and `ReleaseReaderLock()`.
   - Similar to Java's `synchronized` block.
 
-```c#
+```csharp
 using System;
 using System.Threading;
 class MyApp {
@@ -391,7 +391,7 @@ static void ReaderFunc() {
 - Events enable objects to notify others by binding methods to execute when an event occurs.
 - Using delegates and events in combination allows for powerful event-driven programming in C#.
 
-```c#
+```csharp
 delegate double MyDelegate(int i);
 class Program{
   public static void Main() {
@@ -409,7 +409,7 @@ class Program{
 }
 ```
 
-```c#
+```csharp
 using System;
 public delegate void MyDelegate();
 public interface EventInterface {
