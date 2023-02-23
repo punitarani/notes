@@ -379,6 +379,12 @@ static void ReaderFunc() {
 }
 ```
 
+### Deadlocks
+
+1. **Deadlock Prevention** uses an algorithm to guarantee no deadlock will occur.
+2. **Deadlock Avoidance** uses an algorithm to anticipate and prevent deadlock from occurring.
+3. **Deadlock Detection and Recovery** uses an algorithm to detect deadlock and recover from it.
+
 ## Thread Lifecycle
 
 - **creation**: initialized and resources are allocated to it, but it has not yet started executing.
