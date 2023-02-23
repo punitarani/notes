@@ -385,6 +385,61 @@ static void ReaderFunc() {
 2. **Deadlock Avoidance** uses an algorithm to anticipate and prevent deadlock from occurring.
 3. **Deadlock Detection and Recovery** uses an algorithm to detect deadlock and recover from it.
 
+### Delegates and Events
+
+- Delegates represent method references with specific signatures in C#.
+- Events enable objects to notify others by binding methods to execute when an event occurs.
+- Using delegates and events in combination allows for powerful event-driven programming in C#.
+
+```c#
+delegate double MyDelegate(int i);
+class Program{
+  public static void Main() {
+    MyDelegate d1 = new MyDelegate(Pi_Plus);
+    d1(10);
+    MyDelegate d2 = new MyDelegate(E_Plus);
+    d2(20);
+    public static double Pi_Plus(int i) {
+      return i + System.Math.PI;
+    }
+    public static double E_Plus(int i) {
+      return i + System.Math.E;
+    }
+  }
+}
+```
+
+```c#
+using System;
+public delegate void MyDelegate();
+public interface EventInterface {
+  event MyDelegate MyEvent;
+  void EventEmitter();
+}
+public class EventClass : EventInterface {
+  public event MyDelegate MyEvent;
+  public void EventEmitter() {
+    if (MyEvent != null) MyEvent();
+  }
+}
+public class MainClass {
+  static private void TouchSensor() {
+    Console.WriteLine("Touch Sensor Activated");
+  }
+  static private void MotionSensor() {
+    Console.WriteLine("Motion Sensor Activated");
+  }
+  static public void Main() {
+    EventInterface i = new EventClass();
+    i.MyEvent += new MyDelegate(TouchSensor);
+    i.EventEmitter();
+    i.MyEvent -= new MyDelegate(TouchSensor);
+    i.MyEvent += new MyDelegate(MotionSensor);
+    i.EventEmitter();
+  }
+}
+```
+
 ## Thread Lifecycle
 
 - **creation**: initialized and resources are allocated to it, but it has not yet started executing.
