@@ -61,3 +61,15 @@
 - **Multiprogramming**: organize multiple programs to run a single CPU to increase CPU utilization.
 - **Process** is a program in execution.
 - **Multitasking**: Emulate running multiple processes concurrently by switching between them.
+
+## Modes
+
+- Guarantee proper execution of programs by distinguishing between User and OS code.
+  - **User Mode**: computer is executing on behalf of a user application.
+  - **Kernel Mode**: user application requests a service from the OS via syscalls.
+  - **Supervisor Mode**: a mode above user mode that allows privileged instructions to be executed.
+  - **System Mode**: run operating system tasks that do not need access to privileged resources.
+  - **Privileged Mode**: allows certain system-level operations to be performed by kernel or system admin.
+- **Protection Rings**: 0-3. 0 is most privileged and 3 is least privileged.
+  - (-3 : -1) Management Engine(ME), System Management Mode(SMM), Hypervisor.
+  - (0 : 3) Kernel, Device Drivers, Device Drivers, User Applications.
