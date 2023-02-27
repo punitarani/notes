@@ -33,3 +33,7 @@
   - Network Management
 - **OS Objectives**: Resource Efficiency (Virtualization), Ease of Use, and Reliability (Security).
 - **Computer System Organization**: Bus, Interrupts, Storage Structure, I/O Structure.
+
+- **Cache** stores frequently accessed data in faster memory.
+  - Skew Rule: 80% requests hit on 20% frequented data.
+- **Cache Coherency**: maintain consistency of cached data with multiprocessor environments.
