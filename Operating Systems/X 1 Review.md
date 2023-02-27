@@ -37,3 +37,14 @@
 - **Cache** stores frequently accessed data in faster memory.
   - Skew Rule: 80% requests hit on 20% frequented data.
 - **Cache Coherency**: maintain consistency of cached data with multiprocessor environments.
+
+## Interrupts
+
+- **Interrupt** is an attention request for CPU time to signal an event from hardware during execution.
+  - **Interrupt Request Line**: Hardware signal to CPU to request attention.
+  - **Interrupt Handler Routine**: Software routine to handle interrupt.
+  - **Non-maskable Interrupt**: Interrupt that cannot be disabled. Ex: unrecoverable hardware error.
+  - **Maskable Interrupt**: Interrupt that can be disabled by software. Ex: keyboard input.
+  - **Interrupt Chaining**: Multiple interrupt handlers are linked together and executed in sequence.
+  - **Interrupt Priority Levels**: 0-18 NMIs. 15, 19-31 are intel reserved. 32-255 are maskable.
+- **Interrupt Objectives**: deferrable handling, efficiently dispatch handlers, and multi-level priority.
