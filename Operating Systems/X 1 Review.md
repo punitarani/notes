@@ -73,3 +73,14 @@
 - **Protection Rings**: 0-3. 0 is most privileged and 3 is least privileged.
   - (-3 : -1) Management Engine(ME), System Management Mode(SMM), Hypervisor.
   - (0 : 3) Kernel, Device Drivers, Device Drivers, User Applications.
+
+## System Calls
+
+- **System Call** is a request for a service from the OS.
+  - Interface between an executing program and teh operating system
+  - **System Call Interface**: a set of functions that an application program can use to request a service from the OS.
+  - **System Call Handler**: a function that is invoked by the OS to handle a system call.
+  - **System Call Number**: a unique number assigned to each system call.
+  - **System Call Table**: a table of system call numbers and their corresponding system call handlers.
+  - **System Call Parameters**: data that is passed to the system call handler.
+  - **System Call Return Value**: data that is returned to the application program.
