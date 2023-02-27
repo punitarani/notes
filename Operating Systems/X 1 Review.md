@@ -133,3 +133,33 @@
 - **Objective** is to virtualize CPU to allow OS to share CPU with multiple jobs and users at the same time.
 - **Idea** is to run one process for a short time slice and sequentially on the CPU with no OS intervention.
 - **Resources to limit**: Memory access, Disk I/O, x86 instructions.
+- **syscall** is made for OS services and data returned to user space process after validating privileges.
+
+## CPU Scheduling
+
+- **Context Switching**: stores the state (context) of a process to be reloaded later.
+  - **Context** includes CPU registers, open file descriptors, and state of the process.
+  - `yield()` allows a thread/process to voluntarily give up the CPU to another.
+
+- **Cooperative Multitasking**: OS never initiates a context switch. It is up to the process to yield.
+- **Non-Cooperative Multitasking**: OS initiates a context switch based on external events
+- **Preemptive Multitasking**: OS initiates a context switch on timer interrupt.
+  - Timer interrupt is determined by hardware before running processes and switch() is called.
+
+- In process lifecycle, a process alternates between a sequence of CPU and I/O Bursts.
+  - **CPU Bursts**: total amount of time required by CPU to execute the process.
+  - **I/O Bursts**: total amount of time for process waiting for I/O operation to complete.
+- Maximize **Responsiveness** in Interactive Systems and **Not Miss Deadlines** in Real-Time Systems.
+- CPU scheduler can be invoked when process starts/ends or switches states: ready, running and waiting.
+  - Switch context, switch user mode, and traverse to user program location to restart execution.
+- **Scheduler** - Policy:when and how to schedule.
+- **Dispatcher** - Mechanism: Execute the scheduled process.
+
+- Maximize CPU Utilization and Throughput. Minimize turnaround, waiting, and response times.
+  - **CPU Utilization**: percentage of time the CPU is busy.
+  - **Throughput**: number of processes that complete their execution per unit time.
+  - **Turnaround Time**: time from submission to completion of a process. $T_{turn} = T_{finish} - T_{arrive}$
+  - **Waiting Time**: time a process has been waiting in the ready queue. $T_{wait} = T_{start} - T_{arrive}$
+  - **Response Time**: time from request to first (not complete) response. $T_{resp} = T_{first} - T_{arrive}$
+
+- **Assumptions**: Jobs run for same time, arrive at same time, CPU no I/O, and run time is unknown.
