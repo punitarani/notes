@@ -163,3 +163,22 @@
   - **Response Time**: time from request to first (not complete) response. $T_{resp} = T_{first} - T_{arrive}$
 
 - **Assumptions**: Jobs run for same time, arrive at same time, CPU no I/O, and run time is unknown.
+
+### Scheduling Algorithms
+
+- **FIFO**: First In First Out. Ordered by arrival time.
+  - Non-preemptive. **Convoy effect** is when a long process blocks a short process.
+- **SJF**: Shortest Job First. Ordered by next shortest CPU burst.
+  - Non-preemptive by default. Can be preemptive by using **Shortest Remaining Time First**.
+- **Round Robin**: Scheduled in order of arrival. Each process is given a time slice and preempted.
+  - Preemptive and uses **Fixed Time Quantum** and prioritizes time sharing. wait - ready - run.
+  - (+) Fairness and each process gets a chance to run and reschedule after a time quantum.
+  - (-) Larger wait and response time. Low throughput. Time consuming for small time quantum.
+- **Priority**: Scheduled in order of priority. Smallest integer is highest priority.
+  - (-) **Starvation** is when a low priority process never gets to run.
+    - **Ageing** increases priority of a process that has been waiting for a long time.
+  - **Internal Factors**: timing constrains, memory requirements, ratio of CPU-I/O burst times.
+  - **External Factors**: process importance, financial considerations, hierarchy among users.
+- **Multilevel Feedback Queue**: Multiple queues with different scheduling algorithms and priority.
+  - Optimize turnaround time and minimize response time.
+- **Lottery** is a scheduling algorithm that randomly selects a process to run.
