@@ -182,3 +182,13 @@
 - **Multilevel Feedback Queue**: Multiple queues with different scheduling algorithms and priority.
   - Optimize turnaround time and minimize response time.
 - **Lottery** is a scheduling algorithm that randomly selects a process to run.
+
+### Threads
+
+- **Threads** can share memory space, code, data, and OS resources.
+  - `thread_create` creates a new thread and `thread_join` waits for a thread to finish.
+  - `thread_exit` terminates a thread and `thread_yield` gives up the CPU to another thread.
+- **IPC** - Inter-Process Communication: allows processes to communicate with each other.
+  - **Shared Memory**: share a common memory region. `shmget`, `shmat`, `shmdt`, and `shmctl`.
+  - **Message Passing**: send messages to each other. `send` and `recv` can be blocking.
+  - (-): Copying overhead, expensive context switching and hard to program/debug.
