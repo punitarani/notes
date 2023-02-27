@@ -38,6 +38,23 @@
   - Skew Rule: 80% requests hit on 20% frequented data.
 - **Cache Coherency**: maintain consistency of cached data with multiprocessor environments.
 
+## OS Responsibilities
+
+1. **Process Management**: create, delete, suspend, resume, and schedule processes.
+   - Provide mechanisms for process synchronization and communication.
+2. **Memory Management**: allocate and free memory. Keep track of memory usage and location.
+   - Provide mechanisms for memory sharing and protection.
+   - Virtual Memory: Use disk as RAM to emulate more memory.
+3. **File-System Management**: create, delete, open, close, read, and write files.
+   - syscalls: `open`, `close`, `read`, `write`, `lseek`, and `stat`.
+4. **Mass-Storage Management**: manage disk drives and file systems. Disk scheduling, partitioning and protection.
+   - syscalls: `mount`, `umount`, `sync`, `reboot`, and `shutdown`.
+5. **Cache Management**: manage cache memory. Cache replacement policies.
+6. **I/O System Management**: memory management component that includes buffering, caching and spooling.
+
+- **Security**: handle threats from outside of the system. User resources.
+- **Protection**: handle threats from within the system. Programs and resources.
+
 ## Interrupts
 
 - **Interrupt** is an attention request for CPU time to signal an event from hardware during execution.
