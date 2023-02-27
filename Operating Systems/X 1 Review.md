@@ -48,3 +48,16 @@
   - **Interrupt Chaining**: Multiple interrupt handlers are linked together and executed in sequence.
   - **Interrupt Priority Levels**: 0-18 NMIs. 15, 19-31 are intel reserved. 32-255 are maskable.
 - **Interrupt Objectives**: deferrable handling, efficiently dispatch handlers, and multi-level priority.
+
+## Multiprocessing
+
+- **Shared System Interconnect**: Allows multiple processors to communicate with each other.
+  - **NUMA (Non-Uniform Memory Access)**: Multiple processors access different regions of memory at different speeds.
+    - (+) Scale more effectively as CPU accesses memory faster and there is no contention over the SSI.
+    - (-) Increased latency as CPU accesses over SSI is slower reducing performance.
+- **Symmetric Multiprocessing (SMP)**: Each processor performs all tasks, including OS functions and user programs.
+- **Symmetric Clustering**: 2+ hosts running the same applications and monitoring each other.
+- **Parallelization**: divide program into smaller tasks and run them in parallel on different processors.
+- **Multiprogramming**: organize multiple programs to run a single CPU to increase CPU utilization.
+- **Process** is a program in execution.
+- **Multitasking**: Emulate running multiple processes concurrently by switching between them.
