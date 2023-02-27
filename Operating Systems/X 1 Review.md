@@ -101,3 +101,35 @@
   - **System Call Table**: a table of system call numbers and their corresponding system call handlers.
   - **System Call Parameters**: data that is passed to the system call handler.
   - **System Call Return Value**: data that is returned to the application program.
+
+## Process Abstraction
+
+- **Process** needs CPU, Memory, and I/O devices to complete a task.
+  - **CPU**: Instruction Pointer (Program Counter) and Stack Pointer.
+  - **Memory**: Set of memory addresses, Code (`cat/proc/<pid>/maps`).
+  - **Disk**: Set of file descriptions (`cat/proc/<pid>/fdinfo`).
+- **Thread** is a basic unit of CPU utilization. It is a light-weight process.
+  - Has its own program counter, stack, register set, and thread ID.
+- **Process Control Block**: contains all information about a process.
+
+  - **Process State**: New, Ready, Running, Waiting, and Terminated.
+  - **Process ID**: unique number assigned to a process.
+  - **Program Counter**: address of next instruction to be executed.
+  - **CPU Registers**: general purpose registers.
+  - **CPU Scheduling Information**: priority, scheduling queue, and scheduling algorithm.
+  - **Memory Management Information**: memory limits, page table, and memory maps.
+  - **Accounting Information**: CPU time used, time limits, and accounting number.
+  - **I/O Status Information**: I/O devices, open files, and pending I/O operations.
+  - **Control Information**: parent process, process group, and session.
+
+- **Creation**: System Initialization, Running Process, and User Request.
+  - `fork` allows a parent process to create a child process. Returns 0 for new process and child's PID for parent.
+    - Child process contains: address space that is a copy of the parent, register set, and PC.
+- **Procedure**: Load code and static data, allocate memory, init stack and heap, init start I/O's, and execute.
+
+### Limited Direct Execution
+
+- Low-Level mechanism that implements user-kernel space separation.
+- **Objective** is to virtualize CPU to allow OS to share CPU with multiple jobs and users at the same time.
+- **Idea** is to run one process for a short time slice and sequentially on the CPU with no OS intervention.
+- **Resources to limit**: Memory access, Disk I/O, x86 instructions.
