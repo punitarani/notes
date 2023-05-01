@@ -1,0 +1,153 @@
+- **Inter-Process Communication** (IPC) is a mechanism for processes to communicate and to synchronize their actions.
+  - Message passing operations: `send(message, recipient)` and `receive(message, sender)`.
+    - Can also be handled indirectly using mailboxes: `send(A, message)` and `receive(A, message)`.
+    - Can be **blocking** or **non-blocking** for sender and/or receiver.
+  - Shared memory operations. First explicitly define a region of shared memory
+    - `shmget` creates a new shared memory segment or opens an existing one.
+    - `shmat` attaches the shared memory segment to the calling process' address space.
+    - `shmdt` detaches the shared memory segment from the calling process' address space.
+    - `shmctl` performs control operations on the shared memory segment.
+  - **Challenges**: hard programming, copying overheads (inefficient comms) and expensive context switches.
+
+- **Threads** are lightweight processes also known as separate execution paths.
+  - Like a process, a thread has its own program counter, register set, and stack space.
+  - Threads run in shared memory space and are not independent of each other.
+    - Threads share their code, data and OS resources with other threads in the same process.
+  - Threads are managed by the operating system and/or the thread library.
+    - `thread_create` specifies the name of the procedure for the new thread to run.
+    - `thread_exit` terminate the calling thread and return an exit status to waiting threads.
+    - `thread_join` blocks the calling thread until another thread terminates.
+    - `thread_yield` voluntarily gives up the CPU to let another thread execute.
+  - `pthread` API specifies the behavior of the thread library and is common in Unix.
+    - `pthread_create` create a new thread in the caller's address space.
+    - `pthread_exit` terminate the calling thread.
+    - `pthread_join` wait for a thread to terminate.
+    - `pthread_mutex_init` and `pthread_mutex_destroy` for mutexes.
+    - `pthread_mutex_lock` and `pthread_mutex_unlock` for locking and unlocking mutexes.
+    - `pthread_cond_init` and `pthread_cond_destroy` for condition variables.
+    - `pthread_cond_wait` and `pthread_cond_signal` to release a thread waiting on a condition variable.
+  - **Advantages**: Resource sharing, time efficient, and better utilization of multi-core architectures.
+
+- **Race Conditions**: in a time-shared system, the exact instruction execution order is non-deterministic.
+  - Multiple processes are reading/writing shared data and the final result depends on the order of execution.
+  - **Atomic Operation**: execution of a program completes without worrying about interruption by conflicting processes.
+  - **Synchronization** is the coordination of processes to guarantee shared resources are accessed predictably.
+  - **Critical-Section Problem**: only 1 process is executing its critical section (shared resources) at a given time.
+    - **Mutual Exclusion**: no 2 processes may be simultaneously inside the same critical section.
+    - **Bounded Waiting**: no process should have to wait forever to enter a critical section.
+    - **Progress**: no process running outside its critical section may block other processes from that section.
+    - **Arbitrary Speed**: no assumptions are made about relative process speeds of different processes.
+  - **Lock** is a variable with 2 states: available/free and locked/held.
+    - `lock()` or `acquire()` is called before entering the critical section.
+    - `unlock()` or `release()` is called after exiting the critical section.
+    - **Busy Waiting**: waiting processes loop continuously while checking if the critical section is available.
+    - **Spin Lock** is a binary lock variable that uses _busy waiting_.
+      - **Sleeping** is a loop that repeatedly checks until a condition is true, but sleeps in between checks.
+      - **Blocking** is a lock that puts the process to sleep until it is available.
+      - **Disadvantages**: no fairness due to starvation, and decreased performance by wasting CPU cycles busy waiting.
+    - **Test and Set Instruction** is an atomic operation that updates a memory location and returns its old value.
+      - `while (tas(&lock->flag, 1) == 1) yield();` busy waits until the lock is available but gives up the CPU.
+  - **Semaphores** avoid busy waiting by blocking a process until some condition is satisfied
+    - It has 2 operations: `sem_wait(s)` to decrement the semaphore and `sem_post(s)` to increment the semaphore.
+    - A process/thread waiting on the semaphore with value < 0 is blocked until the value is >= 0.
+    - If multiple threads are blocked by the same semaphore, they are unblocked in FIFO or any queue order.
+  - **Producer Consumer Problem**: a producer produces data and a consumer consumes data.
+    - The producer must wait if the buffer is full and the consumer must wait if the buffer is empty.
+    - **Solution**: use 2 semaphores: `empty` and `full` to keep track of the number of empty and full slots.
+      - `empty` is initialized to the size of the buffer and decremented when a slot is filled.
+      - `full` is initialized to 0 and incremented when a slot is emptied.
+      - `mutex` is used to ensure mutual exclusion when accessing the buffer.
+      - `producer` goes to sleep if `empty` is 0 and wakes up `consumer` when it adds an item to the buffer.
+      - `consumer` goes to sleep if `full` is 0 and wakes up `producer` when it removes an item from the buffer.
+    - **Unix Pipes** is a form of redirection with readers, writers and a buffer
+      - Reads/writes to buffer requires locks. When the buffer is full/empty, the appropriate process sleeps/wakes.
+  - **Deadlock** occurs when threads are waiting for events that can only be caused by other threads in the same set.
+    - **Mutual Exclusion**: threads claim exclusive control of resources that are required by other threads.
+    - **Hold and Wait**: threads hold resources while waiting for other resources.
+    - **No Preemption**: resources cannot be forcibly removed from threads.
+    - **Circular Wait**: threads are waiting for resources that are held by other threads.
+  - **Conditional Variables**: explicit queue that threads can `wait` when some condition is not as desired.
+    - Other threads can wake one of the threads in the queue when the condition is satisfied by calling `signal`.
+  - **Backoff** checks if result will result in blocking. Release resources if blocking. Hold all or no resources.
+  - **Total Ordering**: acquire locks in a fixed order. Release locks in the reverse order of acquisition.
+  - **Deadlock Avoidance Algorithms**: ensure no cycle will be created when a claim edge changes to request edge.
+  - **Deadlock Detection**: analyze resource allocation graph. Can collapse to wait-for graph of processes.
+  - **Deadlock Recovery**: Process termination and resource preemption.
+  - **Ostrich Algorithm**: Ignore potential deadlocks. Detection is expensive and deadlocks are rare.
+
+- **Address Space**: set of addresses that map to a collection of bytes that is the program's view of memory.
+  - Comprised of virtual or logical addresses. Consists of code, data, heap, stack, etc.
+  - **Priorities**: Transparency (act like private memory), Efficiency (space and time), and Protection (isolated).
+- **Static Relocation**: rewrite program with different addresses & pointers before loading into memory as process.
+  - **Advantages**: simple and efficient. **Disadvantages**: low scalability, flexibility, and more change efforts.
+- **Dynamic Relocation (Base)**: translate virtual address to physical by adding an offset each time.
+  - Store base address ina base register and each process ahs a different value in the base register when running.
+  - Hardware: MMU holds the base register value and adds it to the logical address to get the physical address.
+- **Dynamic Relocation (Base-&-Bounds)**: use 2 registers: Base and Bounds to avoid overflow.
+  - The MMU provides privileged instructions to modify the base and bounds register for each process.
+  - **Advantages**: fast, simple with little bookkeeping. **Disadvantages**: flexibility and wastes memory.
+
+- **Segmentation**: generalize each base+bounds pair as a segment (contiguous portion of the address space)
+  - **Segments** can be logical unit: main program, procedure, stack, symbol table, arrays, etc.
+  - **Logical address** is a pair: <segment-number, offset> where offset is the address within the segment.
+  - **Segment Table** maps 2d physical addresses. Each entry has a base and limit/bounds register.
+    - **Segment-Table Base Register (STBR)** points to the segment table's location in memory.
+    - **Segment-Table Length Register (STLR)** indicates the number of segments used by a program.
+  - **External Fragmentation**: free memory is broken into little pieces with **holes** scattered throughout.
+    - A new allocation request may be denied if it cannot fit into any hole even if there is enough free memory.
+  - **S1 Memory Compaction**: move all processes to one end of memory to create one large hole.
+    - **Advantages**: no external fragmentation. **Disadvantages**: expensive and requires relocation.
+  - **S2 Dynamic Memory Allocation**: OS keeps a list of free memory blocks and allocates them to processes.
+    - **First Fit**: allocate the first hole that is big enough.
+    - **Best Fit**: allocate the smallest hole that is big enough. Search entire list, unless ordered by size.
+    - **Worst Fit**: allocate the largest hole. Produces the largest leftover hole.
+    - **Next Fit**: allocate the next hole that is big enough.
+    - **Advantages**: no external fragmentation. **Disadvantages**: internal fragmentation and overhead.
+
+- **Paging**: retrieve processes in form of pages from non-contiguous secondary memory into main memory.
+  - **Frames**: Physical address is conceptually divided into a number of fixed-size blocks.
+  - **Pages**: Logical address space is split into fixed sized blocks.
+  - **Flexible Mapping**: any page can go to any free frame.
+  - **Scalability**: to run a program with n pages, need to find n free frames and load the program.
+- **Page Table**: per-process DS to map virtual page to physical frames. Store address translation.
+  - **Address Translation Scheme**: M-bit virtual address generated by CPU is divided into:
+    - **Virtual Page Number (p)**: used as an index into a page table which contains base address of each page.
+    - **Page offset (d)**: combined with base addr to define the physical memory addr sent to the memory unit.
+  - **Page Table Entry (PBE)**: contains: physical translation + other info (valid, protection, dirty, etc).
+  - **Page Table Base Register (PTBR)**: points to the page table in memory for the current process.
+  - **Page Table Length Register (PTLR)**: indicates size of the page table (number of pages) for bounds checking.
+- **Translation Lookaside Buffer (TLB)**: quick hardware cache part of the MMU that stores PTE.
+  1. Extract VPN (virtual page number) from virtual address.
+  2. Check if VPN is in TLB.
+  - **TLB Hit**: extract PFN from TLB and concatenate it onto the offset to form the physical address.
+  - **TLB Miss**: extract PTE from page table and store it in TLB. Restart the instruction.
+- **Advantages**: Sequential access can almost always hit in the TLB.
+- **Disadvantages**: Random access can miss in the TLB and require 2 memory accesses.
+- **Page sharing**: multiple processes can share the same page in memory.
+  - **Shared code**: one copy of read-only code shared among processes.
+  - **Private code and data**: each process keeps a separate copy of the code and data.
+  - **TLB Replacement Policy**: when TLB is full, replace an entry using LRU, FIFO or random replacement.
+- **Workload Locality**: programs tend to access a relatively small portion of their address space at any instant.
+  - **Temporal Locality**: recently referenced items are likely to be referenced again soon.
+  - **Spatial Locality**: items with nearby addresses tend to be referenced close together in time.
+
+- **Logical/Virtual Address** (BITS): Address created by the CPU
+  - **Page Number** (p) # bits to represent pages. **Page Offset** (d) # bits to represent page size.
+- **Local/Virtual Address Space** (BYTES): Set of all logical addresses generated by a program.
+- **Physical Address** (BITS): Address actually available on the memory unit.
+  - **Frame number** (f) # bits to represent frames. **Frame Offset** (d) # bits to represent frame size.
+- **Physical Address Space** (BYTES): Set of all physical addresses corresponding to the logical addresses.
+
+- **Paging Features**: (1) Map logical to physical addresses. (2) page size is equal to frame size. (3) entires in a page table = pages in logical address space. (4) page table entry contains frame number. (5) All the page table of the processes are placed in main memory.
+- **Example**: Physical address = 12 bits, then physical address space = 2^12 = 4K words.
+  - **Assumption**: Page size = Frame size = 1K words. Then, page table size = 2^12/2^10 = 4 entries.
+
+- **Swapping**: move entire process from main memory to secondary storage and back.
+  - CPU scheduler determines which processes should be swapped out and which processes should be swapped in.
+  - **Advantages**: multiple processes can be run using swap partition. Ideal with priority-based scheduling.
+  - **Disadvantages**: crash if RAM is low, increase number of page faults and slow down processing performance.
+- **Demand Paging**: process of loading the page into memory on demand (whenever page fault occurs).
+  - **Advantages**: maintain more processes in main memory, load large pages on demand, increase utilization.
+
+- **Effective Memory Access Time**: $(p \cdot s) + (1 - p) \cdot m$
+  - **p**: page fault rate. **s**: page fault service time. **m**: memory access time.
