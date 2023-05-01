@@ -151,3 +151,39 @@
 
 - **Effective Memory Access Time**: $(p \cdot s) + (1 - p) \cdot m$
   - **p**: page fault rate. **s**: page fault service time. **m**: memory access time.
+
+- **Page Fault**: program accesses page mapped in virtual address space but not loaded in physical memory.
+- **Cache Management**: physical memory is a cache for virtual memory pages
+- **Average Memory Access Time**: $AMAT= (P_{hit} \cdot T_M) + (P_{miss} \cdot T_D)$
+  - $T_M$: time to access memory. $T_D$: time to access disk.
+  - $P_{hit}$: probability of a hit. $P_{miss}$: probability of a miss.
+
+- **Bleady's Anomaly**: more page faults occur when frames are allocated to a process
+  - Frequently occurs with FIFO, second change and random page replacement algorithm.
+  - **OPT: Optimal Replacement Policy**: evict the page that will be accessed further in the future
+    - Impossible to implement in practice but used as a best-case benchmark for other algorithms.
+
+- **Thrashing**: high paging activity: system is spending more time paging than executing.
+  - **Cause**: too many processes in memory, low page frames, locality of reference is poor.
+  - **Solution**: increase number of frames, reduce number of processes, improve locality of reference.
+
+- **Interrupt livelock**: processes change state too frequently preventing them from making progress.
+  - **Hybrid**: polling + interrupts. **Interrupt coalescing**: combine multiple interrupts into one.
+
+- **Programmed I/O**: CPU is responsible for transferring data from I/O device to memory.
+- **Direct Memory Access**: Transfer data from I/O device to memory without CPU intervention.
+  - DMA controller is responsible for transferring data from I/O device to memory.
+
+- **Sector**: logical block of data on a disk and the smallest unit of transfer (512 bytes or 4kB)
+- **Disk I/O Latency**: $L_{I/O} = L_{seek} + L_{rotate} + L_{transfer}$
+  - **Seek**: time to move the disk arm to the desired track.
+  - **Rotate**: time for the desired sector to rotate under the disk head. $7200 RPM = 120 RPS = 8.3 ms/rev.$
+  - **Transfer**: time to transfer data from the disk surface to the host. $100 MB/s = 4.9 \mu s/sector$ (512 bytes)
+
+- **Disk Scheduling**
+  - **FIFO**: first come first serve.
+  - **SPTF**: shortest position time first (minimize seek time). Greedy and may cause starvation.
+  - **SCAN**: sweep back and forth across the disk. Elevator algorithm. Middle cylinders get better service.
+  - **C-SCAN**: SCAN in 1 direction only. More uniform wait time. Cylinders are like a circular list.
+  - **C-LOOK**: C-SCAN but until the first/last request in the direction of the sweep.
+  - **CFQ** (Completely Fair Queuing): weighted round-robin for each process with priority based time slice.
