@@ -49,11 +49,11 @@
   - Food Count: 30
   - Ghost Positions: 12
   - Agent facing: 4 (N, S, E, W)
-- # World States: 120 _ 2\*\*30 _ 2\*_12 _ 4
+- World States: 120 _ 2\*\*30 _ 2\*_12 _ 4
   - This reflects the number of possible states in the world
-- # States for path finding: 120
+- States for path finding: 120
   - Number of possible positions for Pacman
-- # States for eating all the food: 120 \* 2\*\*30
+- States for eating all the food: 120 \* 2\*\*30
   - Number of possible positions for Pacman and the food
 
 ### State Space Graph
