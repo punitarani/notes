@@ -59,6 +59,18 @@
   - In a known environment, the agent knows the rules of the environment.
   - In an unknown environment, the agent does not know the rules of the environment.
 
+#### Environment Examples
+
+|               | Solitaire (1 game) | Backgammon (1 game) | Internet shopping (1 item) | Auto Taxi (1 trip) |
+| ------------- | ------------------ | ------------------- | -------------------------- | ------------------ |
+| Observable    | Partial            | Fully               | Partial                    | Partial            |
+| Deterministic | Deterministic      | Stochastic          | Deterministic\*            | Nondeterministic   |
+| Episodic      | Sequential         | Sequential          | Sequential                 | Sequential         |
+| Static        | Static             | Static              | Dynamic\*                  | Dynamic            |
+| Discrete      | Discrete           | Discrete            | Discrete                   | Continuous         |
+| Single-agent  | Single             | Multi-agent         | Single (except auctions)   | Multi-agent        |
+| Known         | Known              | Known               | Known\*                    | Unknown            |
+
 ### Agent Types
 
 - Simple Reflex Agents
