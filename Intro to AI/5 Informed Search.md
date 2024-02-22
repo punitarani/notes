@@ -11,6 +11,9 @@
   - **Admissible**: A heuristic that never overestimates the cost to reach the goal
   - **Consistent**: A heuristic that satisfies the triangle inequality
     - $h(A) - h(C) \leq cost(A to C)$
+    - The heuristic value of a node is less than or equal to the cost of reaching a neighbor plus the heuristic value of the neighbor
+  - **Optimistic**: A heuristic that is always less than or equal to the true cost
+      - $h(A) \leq cost(A to G)$
 
 ## Best-First Search
 
